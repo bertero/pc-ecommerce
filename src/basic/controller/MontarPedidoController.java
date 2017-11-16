@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import basic.model.*;
+
 import java.util.ArrayList;
 
 /**
@@ -17,39 +18,25 @@ import java.util.ArrayList;
 @WebServlet("/montar-pedido")
 public class MontarPedidoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Processador> listaDeProcessador = new ArrayList<Processador>();
+	private ArrayList<Processador> listaProcessadores = new ArrayList<Processador>();
+	private ArrayList<PlacaMae> listaPlacasMae = new ArrayList<PlacaMae>();
+	private ArrayList<Memoria> listaMemorias = new ArrayList<Memoria>();
+	private ArrayList<DiscoRigido> listaDiscosRigidos = new ArrayList<DiscoRigido>();
+	private Pedido pedido;
+	private Cliente cliente;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public MontarPedidoController() {
         super();
-        Soquete soqueteUnico     = new Soquete(1, "soqueteUnico");
-        Processador processador  = new Processador(1, "modeloA", "2.4", soqueteUnico);
-        Processador processadorA = new Processador(2, "modeloB", "2.4", soqueteUnico);
-        Processador processadorB = new Processador(3, "modeloC", "3.0", soqueteUnico);
-        
-        listaDeProcessador.add(processador);
-        listaDeProcessador.add(processadorA);
-        listaDeProcessador.add(processadorB);
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher getServletContext().getRequestDispatcher("/processadorDetalhado.jsp");
-		if (request.getParameter("id") == null) {
-			request.setAttribute("lista", listaDeProcessador);
-			requestDispatcher = getServletContext().getRequestDispatcher("/listaDeProcessador.jsp");
-		} else {
-			int id = Integer.parseInt(request.getParameter("id"));
-			for(Processador p : listaDeProcessador){
-			    if (p.getId() == id) request.setAttribute("processador", p);
-			}
-			requestDispatcher = 
-		}
-		
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoInit.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -57,8 +44,8 @@ public class MontarPedidoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String cpfCliente = request.getParameter("cpf");
+		cliente = new Cliente(cpfCliente);
 	}
 
 }
