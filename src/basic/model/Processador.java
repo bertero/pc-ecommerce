@@ -1,15 +1,18 @@
 package basic.model;
 
+import basic.model.soquete.Soquete;
+
 public class Processador extends PecaDeComputador{
 	private int id;
 	private String modelo, frequencia;
 	private Soquete soquete;
 	
-	public Processador(int id, String modelo, String frequencia, String fabricante, double preco) {
+	public Processador(int id, String modelo, String frequencia, String fabricante, double preco, Soquete soquete) {
 		super(fabricante, preco);
 		this.id = id;
 		this.modelo = modelo;
 		this.frequencia = frequencia;
+		this.soquete = soquete;
 	}
 	
 	public int getId() {
