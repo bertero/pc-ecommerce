@@ -99,6 +99,24 @@
         <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_cO_Nccr9Eee3FO33sO5oFQ" type="Sequence" element="_cNk4MMr9Eee3FO33sO5oFQ" name="GerarRelatorio" measurementUnit="Himetric">
           <children xmi:type="umlnotation:UMLShape" xmi:id="_cO_Ncsr9Eee3FO33sO5oFQ" element="_cNk4MMr9Eee3FO33sO5oFQ" fontName="Segoe UI" fontHeight="8" fillColor="16250871" transparency="0" lineColor="12632258" lineWidth="1" showStereotype="Label">
             <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_cO_Nc8r9Eee3FO33sO5oFQ" type="interaction_compartment">
+              <children xmi:type="umlnotation:UMLShape" xmi:id="_VlyZ8Mr_Eee3FO33sO5oFQ" element="_VloB4Mr_Eee3FO33sO5oFQ" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+                <eAnnotations xmi:id="_VlzBAMr_Eee3FO33sO5oFQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+                  <details xmi:id="_VlzBAcr_Eee3FO33sO5oFQ" key="LifelineLabelStyle" value="Represents Name and Type Name"/>
+                </eAnnotations>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_VlzBAsr_Eee3FO33sO5oFQ" type="Stereotype"/>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_VlzBA8r_Eee3FO33sO5oFQ" type="Name"/>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_VlzoEMr_Eee3FO33sO5oFQ" type="Parent"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VlyZ8cr_Eee3FO33sO5oFQ" x="-5954" y="555" width="1164" height="9525"/>
+              </children>
+              <children xmi:type="umlnotation:UMLShape" xmi:id="_ShlCEMr_Eee3FO33sO5oFQ" element="_ShgJkMr_Eee3FO33sO5oFQ" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+                <eAnnotations xmi:id="_ShlpIMr_Eee3FO33sO5oFQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
+                  <details xmi:id="_ShlpIcr_Eee3FO33sO5oFQ" key="LifelineLabelStyle" value="Represents Name and Type Name"/>
+                </eAnnotations>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_ShlpIsr_Eee3FO33sO5oFQ" type="Stereotype"/>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_ShlpI8r_Eee3FO33sO5oFQ" type="Name"/>
+                <children xmi:type="notation:BasicDecorationNode" xmi:id="_ShmQMMr_Eee3FO33sO5oFQ" type="Parent"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ShlCEcr_Eee3FO33sO5oFQ" x="-324" y="713" width="2830" height="9525"/>
+              </children>
               <children xmi:type="umlnotation:UMLShape" xmi:id="_o7vM4Mr9Eee3FO33sO5oFQ" element="_o7lb4Mr9Eee3FO33sO5oFQ" fontName="Segoe UI" fontHeight="8" fillColor="16116705" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
                 <eAnnotations xmi:id="_o7vz8Mr9Eee3FO33sO5oFQ" source="com.ibm.xtools.uml.ui.diagram.internal.styles">
                   <details xmi:id="_o7xCEMr9Eee3FO33sO5oFQ" key="LifelineLabelStyle" value="Represents Name and Type Name"/>
@@ -115,10 +133,15 @@
         </contents>
       </eAnnotations>
       <lifeline xmi:id="_o7lb4Mr9Eee3FO33sO5oFQ" name="gerente" represents="_o7mqAMr9Eee3FO33sO5oFQ"/>
+      <lifeline xmi:id="_VloB4Mr_Eee3FO33sO5oFQ" name="Property" represents="_VloB4cr_Eee3FO33sO5oFQ"/>
+      <lifeline xmi:id="_ShgJkMr_Eee3FO33sO5oFQ" name="controlador" represents="_ShgJkcr_Eee3FO33sO5oFQ"/>
     </ownedBehavior>
     <ownedAttribute xmi:id="_o7mqAMr9Eee3FO33sO5oFQ" name="Joao" type="_mI5R0Mr9Eee3FO33sO5oFQ"/>
+    <ownedAttribute xmi:id="_ShgJkcr_Eee3FO33sO5oFQ" name="" type="_NokrwMr_Eee3FO33sO5oFQ"/>
+    <ownedAttribute xmi:id="_VloB4cr_Eee3FO33sO5oFQ" name="Tela"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Actor" xmi:id="_mI5R0Mr9Eee3FO33sO5oFQ" name="Gerente"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NokrwMr_Eee3FO33sO5oFQ" name="Controlador"/>
   <profileApplication xmi:id="_UwFMPsr9Eee3FO33sO5oFQ">
     <eAnnotations xmi:id="_UwFMP8r9Eee3FO33sO5oFQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
