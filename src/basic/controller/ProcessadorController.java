@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import basic.model.*;
-import basic.model.soquete.Soquete;
+import basic.model.processador.Processador;
+import basic.model.soquete.Usuario;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class ProcessadorController extends HttpServlet {
      */
     public ProcessadorController() {
         super();
-        Soquete soqueteUnico     = new Soquete(1, "soqueteUnico");
+        Usuario soqueteUnico     = new Usuario(1, "soqueteUnico");
         Processador processador  = new Processador(1, "modeloA", "2.4", soqueteUnico);
         Processador processadorA = new Processador(2, "modeloB", "2.4", soqueteUnico);
         Processador processadorB = new Processador(3, "modeloC", "3.0", soqueteUnico);

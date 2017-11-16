@@ -1,5 +1,6 @@
-package basic.model;
+package basic.model.processador;
 
+import basic.model.PecaDeComputador;
 import basic.model.soquete.Soquete;
 
 public class Processador extends PecaDeComputador{

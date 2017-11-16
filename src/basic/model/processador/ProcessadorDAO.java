@@ -1,15 +1,13 @@
-package basic.model;
+package basic.model.processador;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import basic.model.DAO;
 import basic.model.soquete.Soquete;
 import basic.model.soquete.SoqueteDAO;
 
-/**
- * Created by rafa93br on 08/11/16.
- */
 public class ProcessadorDAO extends DAO {
     private static final ProcessadorDAO instance = new ProcessadorDAO();
     public ProcessadorDAO() {
@@ -32,7 +30,6 @@ public class ProcessadorDAO extends DAO {
 
         try {
             Connection connection = getConexao();
-            Statement statement = connection.createStatement();
 
             String query = "SELECT * FROM processador ORDER BY preco ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -56,7 +53,6 @@ public class ProcessadorDAO extends DAO {
         Processador processador = null;
         try {
             Connection connection = getConexao();
-            Statement statement = connection.createStatement();
 
             String query = "SELECT * FROM processador WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);

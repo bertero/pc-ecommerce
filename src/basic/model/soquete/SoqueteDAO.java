@@ -1,13 +1,8 @@
 package basic.model.soquete;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import basic.model.*;
 
-/**
- * Created by rafa93br on 08/11/16.
- */
 public class SoqueteDAO extends DAO {
     private static final SoqueteDAO instance = new SoqueteDAO();
     public SoqueteDAO() {
@@ -28,7 +23,6 @@ public class SoqueteDAO extends DAO {
     	Soquete soquete = null;
         try {
             Connection connection = getConexao();
-            Statement statement = connection.createStatement();
 
             String query = "SELECT * FROM soquete WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
