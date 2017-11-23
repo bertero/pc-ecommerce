@@ -1,0 +1,25 @@
+#main_div {
+	padding-top: 75px;
+}
+.main_title h1 {
+	font-size: 20px !important;
+}
+.bordas 
+{
+	border: 2px solid lightgray;
+	border-radius: 5px;
+}
+.lista_produtos
+{
+	background: lightblue;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+.produto
+{
+	border-style: solid;
+	border-width: 1px;
+	margin: 15px;
+	padding: 5px;
+}
