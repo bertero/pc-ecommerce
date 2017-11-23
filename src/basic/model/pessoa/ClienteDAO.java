@@ -24,7 +24,7 @@ public class ClienteDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM soquete WHERE cpf = ?";
+            String query = "SELECT * FROM clientes WHERE cpf = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, cpf);
 
@@ -33,9 +33,29 @@ public class ClienteDAO extends DAO {
             if (rs.next()) {
                 cliente = this.createProcessadorFromRow(rs);
             }
+            connection.close();
 
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
 
+        return cliente;
+    }
+    
+    public Cliente getClienteById(int id) {
+    	Cliente cliente = null;
+        try {
+            Connection connection = getConexao();
 
+            String query = "SELECT * FROM clientes WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                cliente = this.createProcessadorFromRow(rs);
+            }
             connection.close();
 
         } catch(SQLException e) {

@@ -16,6 +16,8 @@ import basic.model.pessoa.UsuarioDAO;
 import basic.model.processador.*;
 import basic.model.discoRigido.*;
 import basic.model.memoria.*;
+import basic.model.pedido.Pedido;
+import basic.model.pedido.PedidoDAO;
 
 import java.util.List;
 
@@ -52,10 +54,9 @@ public class MontarPedidoInitController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idPedido = (int)Math.random() * 10000;
 		cliente = ClienteDAO.getInstance().getClienteByCpf(request.getParameter("cpf"));
-		Pedido pedido = new Pedido(idPedido, cliente, usuario);
-		request.setAttribute("pedido", pedido);
+		int idPedido = PedidoDAO.insertPedido(cliente, usuario);
+		request.setAttribute("idPedido", idPedido);
 		request.setAttribute("listaProcessadores", listaProcessadores);
 		request.setAttribute("listaPlacasMae", listaPlacasMae);
 		request.setAttribute("listaMemorias", listaMemorias);

@@ -31,7 +31,7 @@ public class ProcessadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM processador ORDER BY preco ASC";
+            String query = "SELECT * FROM processadores ORDER BY preco ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -54,7 +54,7 @@ public class ProcessadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM processador WHERE id = ?";
+            String query = "SELECT * FROM processadores WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

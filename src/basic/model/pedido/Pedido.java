@@ -1,4 +1,4 @@
-package basic.model;
+package basic.model.pedido;
 
 import basic.model.pessoa.Cliente;
 import basic.model.pessoa.Usuario;
