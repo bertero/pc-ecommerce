@@ -5,12 +5,14 @@ public class ItemDePedido {
 	private int quantidade;
 	private Pedido pedido;
 	private Produto prod;
+	private String tipo;
 	
-	public ItemDePedido(int id, Pedido pedido, Produto prod, int quantidade) {
+	public ItemDePedido(int id, Pedido pedido, Produto prod, int quantidade, String tipo) {
 		this.id = id;
 		this.pedido = pedido;
 		this.prod = prod;
 		this.quantidade = quantidade;
+		this.tipo = tipo;
 	}
 
 	public int getQuantidade() {
@@ -27,6 +29,10 @@ public class ItemDePedido {
 
 	public Pedido getIdPedido() {
 		return pedido;
+	}
+	
+	public String getTipo() {
+		return tipo;
 	}
 	
 	

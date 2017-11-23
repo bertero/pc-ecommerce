@@ -1,6 +1,9 @@
 package basic.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +20,38 @@ public class ItemDePedidoDAO extends DAO {
     }
 
     private ItemDePedido createItemDePedidoFromRow(ResultSet rs) throws SQLException {
+    	int idProd;
+    	int idProcessador = rs.getInt("idProcessador");
+    	int idPlacaMae = rs.getInt("idPlacaMae");
+    	int idMemoria = rs.getInt("idMemoria");
+    	int idDiscoRigido = rs.getInt("idDiscoRigido");
+    	int idComputador = rs.getInt("idComputador");
+    	String tipo;
+    	Produto prod;
+    	
+    	if (idProcessador != 0) {
+    		idProd = idProcessador;
+    		tipo = "processador";
+    		prod = ProcessadorDAO.getInstance().getProcessadorById(idProd);
+    	} else if (idPlacaMae != 0) {
+    		idProd = idPlacaMae;
+    		tipo = "placaMae";
+    		prod = PlacaMaeDAO.getInstance().getPlacaMaeById(idProd);
+    	} else if (idMemoria != 0) {
+    		idProd = idMemoria;
+    		tipo = "memoria";
+    		prod = MemoriaDAO.getInstance().getMemoriaById(idProd);
+    	} else if (idDiscoRigido != 0) {
+    		idProd = idDiscoRigido;
+    		tipo = "discoRigido";
+    		prod = DiscoRigidoDAO.getInstance().getDiscoRigidoById(idProd);
+    	} else if (idComputador != 0) {
+    		idProd = idComputador;
+    		tipo = "computador";
+    		prod = ComputadorDAO.getInstance().getComputadorById(idComputador);
+    	}
     	Pedido pedido = PedidoDAO.getInstance().getPedidoById(rs.getInt("idPedido"));
-    	ItemDePedido itemDePedido = new ItemDePedido(rs.getInt("id"), pedido, prod, rs.getInt("quantidade"));
+    	ItemDePedido itemDePedido = new ItemDePedido(rs.getInt("id"), pedido, prod, rs.getInt("quantidade"), tipo);
         return itemDePedido;
     }
 
