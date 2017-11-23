@@ -1,11 +1,8 @@
-package basic.model.pedido;
+package basic.dao;
 
 import java.sql.*;
+
 import basic.model.*;
-import basic.model.pessoa.Cliente;
-import basic.model.pessoa.ClienteDAO;
-import basic.model.pessoa.Usuario;
-import basic.model.pessoa.UsuarioDAO;
 
 public class PedidoDAO extends DAO {
     private static final PedidoDAO instance = new PedidoDAO();

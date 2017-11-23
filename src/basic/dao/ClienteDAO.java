@@ -1,6 +1,7 @@
-package basic.model.pessoa;
+package basic.dao;
 
 import java.sql.*;
+
 import basic.model.*;
 
 public class ClienteDAO extends DAO {

@@ -1,4 +1,4 @@
-package basic.model.pessoa;
+package basic.model;
 
 public class Pessoa {
 	private int id;

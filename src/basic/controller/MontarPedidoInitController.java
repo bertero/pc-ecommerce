@@ -8,16 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import basic.dao.ClienteDAO;
+import basic.dao.DiscoRigidoDAO;
+import basic.dao.PedidoDAO;
+import basic.dao.ProcessadorDAO;
+import basic.dao.UsuarioDAO;
 import basic.model.*;
-import basic.model.pessoa.Cliente;
-import basic.model.pessoa.ClienteDAO;
-import basic.model.pessoa.Usuario;
-import basic.model.pessoa.UsuarioDAO;
 import basic.model.processador.*;
 import basic.model.discoRigido.*;
 import basic.model.memoria.*;
-import basic.model.pedido.Pedido;
-import basic.model.pedido.PedidoDAO;
 
 import java.util.List;
 

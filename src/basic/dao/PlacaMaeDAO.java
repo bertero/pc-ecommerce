@@ -1,4 +1,4 @@
-package basic.model.placaMae;
+package basic.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basic.model.DAO;
-import basic.model.TipoDeMemoria.TipoDeMemoria;
-import basic.model.TipoDeMemoria.TipoDeMemoriaDAO;
+import basic.model.PlacaMae;
+import basic.model.TipoDeMemoria;
+import basic.model.TipoDeMemoriaDAO;
 
 public class PlacaMaeDAO extends DAO {
 	private static final PlacaMaeDAO instance = new PlacaMaeDAO();

@@ -1,4 +1,4 @@
-package basic.model.TipoDeMemoria;
+package basic.model;
 
 public class TipoDeMemoria {
 

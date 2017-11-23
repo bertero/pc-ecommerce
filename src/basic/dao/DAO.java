@@ -1,4 +1,4 @@
-package basic.model;
+package basic.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ public class DAO {
     }
 
 
-    protected Connection getConexao() throws SQLException {
+    protected static Connection getConexao() throws SQLException {
         return DriverManager.getConnection("jdbc:mariadb://" +
                 HOST + ":" +
                 PORT + "/" +

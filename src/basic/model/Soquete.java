@@ -1,4 +1,4 @@
-package basic.model.soquete;
+package basic.model;
 
 public class Soquete {
 	private int id;

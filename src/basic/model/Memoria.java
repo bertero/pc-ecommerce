@@ -1,7 +1,4 @@
-package basic.model.Memoria;
-
-import basic.model.PecaDeComputador;
-import basic.model.TipoDeMemoria.TipoDeMemoria;
+package basic.model;
 
 public class Memoria extends PecaDeComputador{
 	

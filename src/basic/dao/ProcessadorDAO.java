@@ -1,12 +1,11 @@
-package basic.model.processador;
+package basic.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import basic.model.DAO;
-import basic.model.soquete.Soquete;
-import basic.model.soquete.SoqueteDAO;
+import basic.model.Processador;
+import basic.model.Soquete;
 
 public class ProcessadorDAO extends DAO {
     private static final ProcessadorDAO instance = new ProcessadorDAO();

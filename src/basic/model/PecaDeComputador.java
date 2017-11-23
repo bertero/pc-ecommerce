@@ -1,11 +1,12 @@
 package basic.model;
 
-public class PecaDeComputador {
+public class PecaDeComputador extends Produto{
 
 	private double preco;
 	private String fabricante;
 	
-	public PecaDeComputador(String fabricante, double preco) {
+	public PecaDeComputador(int id, String fabricante, double preco) {
+		super(id);
 		this.setFabricante(fabricante);
 		this.setPreco(preco);
 	}

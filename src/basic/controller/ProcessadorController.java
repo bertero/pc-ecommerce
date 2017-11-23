@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import basic.model.*;
-import basic.model.processador.Processador;
-import basic.model.soquete.Soquete;
 import basic.model.soquete.Usuario;
 
 import java.util.ArrayList;

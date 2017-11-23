@@ -1,6 +1,7 @@
-package basic.model.soquete;
+package basic.dao;
 
 import java.sql.*;
+
 import basic.model.*;
 
 public class SoqueteDAO extends DAO {

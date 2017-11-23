@@ -1,23 +1,14 @@
-package basic.model.processador;
-
-import basic.model.PecaDeComputador;
-import basic.model.soquete.Soquete;
+package basic.model;
 
 public class Processador extends PecaDeComputador{
-	private int id;
 	private String modelo, frequencia;
 	private Soquete soquete;
 	
 	public Processador(int id, String modelo, String frequencia, String fabricante, double preco, Soquete soquete) {
-		super(fabricante, preco);
-		this.id = id;
+		super(id, fabricante, preco);
 		this.modelo = modelo;
 		this.frequencia = frequencia;
 		this.soquete = soquete;
-	}
-	
-	public int getId() {
-		return id;
 	}
 	
 	public String getModelo() {

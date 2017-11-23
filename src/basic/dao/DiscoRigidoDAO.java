@@ -1,4 +1,4 @@
-package basic.model.discoRigido;
+package basic.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basic.model.DAO;
+import basic.model.DiscoRigido;
 
 public class DiscoRigidoDAO extends DAO{
 	private static final DiscoRigidoDAO instance = new DiscoRigidoDAO();

@@ -1,4 +1,4 @@
-package basic.model.pessoa;
+package basic.model;
 
 public class Usuario extends Pessoa {
 	private String login, senha;

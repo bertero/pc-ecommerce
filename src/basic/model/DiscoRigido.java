@@ -1,6 +1,4 @@
-package basic.model.discoRigido;
-
-import basic.model.PecaDeComputador;
+package basic.model;
 
 public class DiscoRigido extends PecaDeComputador{
 	private String tamanho, tipo;
