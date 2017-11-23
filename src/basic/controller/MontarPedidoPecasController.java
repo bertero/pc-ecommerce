@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import basic.dao.ArrayList;
 import basic.dao.ClienteDAO;
 import basic.dao.DiscoRigidoDAO;
 import basic.dao.PedidoDAO;
@@ -56,7 +57,7 @@ public class MontarPedidoPecasController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPedido = Integer.parseInt(request.getParameter("idPedido"));
 		pedido = PedidoDAO.getInstance().getPedidoById(idPedido);
-		
+		List<Processador> processadoresSelecionados = (List) request.getParameter("processadoresSelecionados");
 		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
         requestDispatcher.forward(request, response);
