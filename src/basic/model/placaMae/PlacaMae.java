@@ -4,14 +4,13 @@ import basic.model.PecaDeComputador;
 import basic.model.TipoDeMemoria.TipoDeMemoria;
 
 public class PlacaMae extends PecaDeComputador{
-	private int id, slots;
+	private int slots;
 	private String modelo;
 	private TipoDeMemoria tipoDeMemoria;
 
 	public PlacaMae(String fabricante, double preco, int id, int slots,
 			String modelo, TipoDeMemoria tipoDeMemoria) {
-		super(fabricante, preco);
-		this.id = id;
+		super(id, fabricante, preco);
 		this.slots = slots;
 		this.modelo = modelo;
 		this.tipoDeMemoria = tipoDeMemoria;
@@ -39,10 +38,6 @@ public class PlacaMae extends PecaDeComputador{
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
-	}
-
-	public int getId() {
-		return id;
 	}
 	
 }
