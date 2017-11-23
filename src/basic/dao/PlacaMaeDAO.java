@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import basic.model.DAO;
+
 import basic.model.PlacaMae;
 import basic.model.TipoDeMemoria;
-import basic.model.TipoDeMemoriaDAO;
+
 
 public class PlacaMaeDAO extends DAO {
 	private static final PlacaMaeDAO instance = new PlacaMaeDAO();
@@ -25,8 +25,8 @@ public class PlacaMaeDAO extends DAO {
 
     private PlacaMae createPlacaMaeFromRow(ResultSet rs) throws SQLException {
     	TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("tipoDeMemoria_id"));
-        PlacaMae placaMae = new PlacaMae(rs.getInt("id"), rs.getInt("slots"), rs.getString("modelo"),  
-        		rs.getString("fabricante"), rs.getDouble("preco"), tipoDeMemoria);
+        PlacaMae placaMae = new PlacaMae( rs.getString("fabricante"), rs.getDouble("preco"), rs.getInt("id"), rs.getInt("slots")
+        		, rs.getString("modelo"),tipoDeMemoria);
 
         return placaMae;
     }

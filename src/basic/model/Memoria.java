@@ -10,12 +10,12 @@ public class Memoria extends PecaDeComputador{
 
 	
 	
-	public Memoria(String fabricante, double preco, int idMemoria, String frequencia, String tamanho,
+	public Memoria(int id, String fabricante, double preco, String frequencia, String tamanho,
 			TipoDeMemoria tipoDeMemoria) {
 		super(id,fabricante, preco);
 		this.frequencia = frequencia;
 		this.tamanho = tamanho;
-		this.tipoDeMemoria = tipoDeMemoria;
+		this.setTipoDeMemoria(tipoDeMemoria);
 	}
 	public String getFrequencia() {
 		return frequencia;
@@ -28,6 +28,12 @@ public class Memoria extends PecaDeComputador{
 	}
 	public void setTamanho(String tamanho) {
 		this.tamanho = tamanho;
+	}
+	public TipoDeMemoria getTipoDeMemoria() {
+		return tipoDeMemoria;
+	}
+	public void setTipoDeMemoria(TipoDeMemoria tipoDeMemoria) {
+		this.tipoDeMemoria = tipoDeMemoria;
 	}
 	
 
