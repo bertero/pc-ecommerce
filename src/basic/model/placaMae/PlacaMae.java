@@ -1,6 +1,7 @@
 package basic.model.placaMae;
 
 import basic.model.PecaDeComputador;
+import basic.model.TipoDeMemoria.TipoDeMemoria;
 
 public class PlacaMae extends PecaDeComputador{
 	private int id, slots;
