@@ -21,7 +21,7 @@ public class RelatorioController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MontarPedidoInitController() {
+    public RelatorioController() {
         super();
     }
 

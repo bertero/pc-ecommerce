@@ -93,14 +93,15 @@ public class PedidoDAO extends DAO {
     }
     
     //    pega pedidos com um mes de Referencia para gerar relatorio
-    public List<Pedido> getPedidosPorMes(int mesRef)
+    public List<Pedido> getPedidosPorMes(String mesRef)
     {
+    	int mesRefInt = Integer.parseInt(mesRef);
     	List<Pedido> ListaDePedidoPorMes = new ArrayList<Pedido>();
     	
     	try
     	{
     		Connection connection = getConexao();
-    		String query = "SELECT * FROM pedidos WHERE mes = mesRef";
+    		String query = "SELECT * FROM pedidos WHERE mes = mesRefInt";
     		PreparedStatement prepared = connection.prepareStatement(query);
     		ResultSet result = prepared.executeQuery();
     		while(result.next())
