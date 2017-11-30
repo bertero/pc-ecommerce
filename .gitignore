@@ -1,3 +1,8 @@
 .idea/
 RemoteSystemsTempFiles/
 build/
+
+.classpath
+.settings/com.ibm.etools.common.migration.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.tern-project

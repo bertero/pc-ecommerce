@@ -26,12 +26,9 @@
 					<div>
 						<form role="form">
 							<div class="form-group">
-								<label for="cpf_cliente">CPF do cliente</label>
-								<input type="text" name="cpf_cliente" class="form-control" placeholder="CPF do cliente" />
+								<label for="cpfCliente">CPF do cliente</label>
+								<input type="text" name="cpfCliente" class="form-control" placeholder="CPF do cliente" />
 							</div>
-							<button type="submit" class="btn btn-danger">
-								Cancelar
-							</button>
 							<button type="submit" class="btn btn-primary">
 								Confirmar
 							</button>
