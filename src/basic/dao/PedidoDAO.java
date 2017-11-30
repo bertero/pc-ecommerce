@@ -1,6 +1,8 @@
 package basic.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import basic.model.*;
 
@@ -88,6 +90,31 @@ public class PedidoDAO extends DAO {
         }
 
         return pedido;
+    }
+    
+    //    pega pedidos com um mes de Referencia para gerar relatorio
+    public List<Pedido> getPedidosPorMes(int mesRef)
+    {
+    	List<Pedido> ListaDePedidoPorMes = new ArrayList<Pedido>();
+    	
+    	try
+    	{
+    		Connection connection = getConexao();
+    		String query = "SELECT * FROM pedidos WHERE mes = mesRef";
+    		PreparedStatement prepared = connection.prepareStatement(query);
+    		ResultSet result = prepared.executeQuery();
+    		while(result.next())
+    		{
+    			ListaDePedidoPorMes.add(this.createProcessadorFromRow(result));
+    		}
+    		connection.close();
+    	} catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ListaDePedidoPorMes;
+    	
+    	
     }
 
 }

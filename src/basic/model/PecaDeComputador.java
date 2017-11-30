@@ -2,13 +2,12 @@ package basic.model;
 
 public class PecaDeComputador extends Produto{
 
-	private double preco;
+	
 	private String fabricante;
 	
 	public PecaDeComputador(int id, String fabricante, double preco) {
-		super(id);
+		super(id,preco);
 		this.setFabricante(fabricante);
-		this.setPreco(preco);
 	}
 
 	public String getFabricante() {
@@ -19,12 +18,6 @@ public class PecaDeComputador extends Produto{
 		this.fabricante = fabricante;
 	}
 
-	public double getPreco() {
-		return preco;
-	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
 
 }

@@ -1,5 +1,9 @@
 package basic.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Pedido {
@@ -57,5 +61,34 @@ public class Pedido {
 
 	public void setDia(int dia) {
 		this.dia = dia;
+	}
+	
+	//valores calculados
+	public double getPrecoTotalDoPedido()
+	{
+		double valorTotal = 0;
+		for(ItemDePedido itemPedido:this.itensDePedido)
+		{
+		 	valorTotal = valorTotal + itemPedido.getProduto().getPreco();
+		}
+		return valorTotal;
+	}
+	public Date getDataDoPedido() throws ParseException
+	{
+		String anoString = String.valueOf(this.ano);
+		String mesString = String.valueOf(this.mes);
+		String diaString = String.valueOf(this.dia);
+		String dataString = anoString+mesString+diaString;
+		
+		SimpleDateFormat dataFormater = new SimpleDateFormat("yyyy-mm-dd");
+		Date data = null;
+		try
+		{
+			 data = dataFormater.parse(dataString);
+		}
+		catch(ParseException e){e.printStackTrace();}
+		
+	
+		return data;
 	}
 }
