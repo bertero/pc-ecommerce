@@ -13,12 +13,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="bootstrap.min.css" rel="stylesheet">
 	<link href="main.css" rel="stylesheet">
-	<title>Selecionar Peças</title>
+	<title>Carrinho</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="main_title">
-			<h1>Montar Pedido - Selecionar Peças</h1>
+			<h1>Carrinho do Pedido</h1>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -28,10 +28,52 @@
 				
 				<div class="col-md-8" id="main_div">
 					<div>
-						<h4>Selecione as peças para adicionar ao pedido</h4>
+						<h4>Itens adicionados ao pedido</h4>
+					</div>					
+					<div class="lista_produtos">
+						<% 
+							ArrayList<ItemDePedido> listaDeItens = (ArrayList<ItemDePedido>) request.getAttribute("listaDeItens");
+							for (ItemDePedido item : listaDeItens) {
+								if (item.getProduto() instanceof PecaDeComputador) {
+									PecaDeComputador peca = (PecaDeComputador) item.getProduto();
+									if (peca instanceof PlacaMae) {
+										PlacaMae placaMae = (PlacaMae) peca;
+						%>
+						<div class="row">
+							<div class="produto col-md-8">
+								<h4>Placa Mãe</h4>
+								<label>Modelo</label><br>
+								<%= placaMae.getModelo() %>
+								<label>Fabricante</label><br>
+								<%= placaMae.getFabricante() %>
+								<label>Tipo de memória</label><br>
+								<%= placaMae.getTipoDeMemoria() %>
+								<label>Slots</label><br>
+								<%= placaMae.getSlots() %>
+							</div>
+							<div class="quantos col-md-2">
+								<label>Preço</label><br>
+								<%= placaMae.getPreco() %>
+								<label>Quantidade</label>
+								<%= item.getQuantidade() %>
+							</div>
+						</div><br>
+						<%
+									}
+									else if (peca instanceof Processador) {
+										...
+						%>
+						
+						<%
+									}
+								}
+						 %>
+						
+						<% } %>
 					</div>
 					
-					<form role="form">
+					<!-- fim -->
+					<div>
 						<div class="lista_produtos">
 							<h4>Placa Mãe</h4>
 							<% 
@@ -54,8 +96,8 @@
 								<div class="quantos col-md-2">
 									<label>Preço</label><br>
 									<%= placaMae.getPreco() %>
-									<label for="placaMae<%= placaMae.getId() %>">Quantidade:</label>
-									<input type="text" name="placaMae<%= placaMae.getId() %>" class="form_control" style="width:30px" />
+									<label>Quantidade</label>
+									<%= placaMae. %>
 								</div>
 							</div><br>
 							<% }; %>
@@ -143,9 +185,9 @@
 							<% }; %>
 						</div>
 						<button type="submit" class="btn btn-primary">
-							Adicionar ao pedido
+							Confirmar
 						</button>
-					</form>
+					</div>
 				</div>
 				
 				<div class="col-md-2">
