@@ -8,14 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-
-import basic.dao.ClienteDAO;
 import basic.dao.DiscoRigidoDAO;
 import basic.dao.MemoriaDAO;
 import basic.dao.PlacaMaeDAO;
 import basic.dao.ProcessadorDAO;
-import basic.dao.UsuarioDAO;
 import basic.model.*;
 
 import java.util.List;
@@ -23,7 +19,7 @@ import java.util.List;
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/pecas-selecionadas")
+@WebServlet("/pecas-avulsas")
 public class MontarPedidoPecasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Pedido pedido;
@@ -39,7 +35,11 @@ public class MontarPedidoPecasController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pageNotFound.jsp");
+		request.setAttribute("listaProcessadores", ProcessadorDAO.getInstance().getProcessadores());
+		request.setAttribute("listaPlacasMae", PlacaMaeDAO.getInstance().getPlacasMae());
+		request.setAttribute("listaMemorias", MemoriaDAO.getInstance().getMemorias());
+		request.setAttribute("listaDiscosRigidos", DiscoRigidoDAO.getInstance().getDiscosRigidos());
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -51,9 +51,7 @@ public class MontarPedidoPecasController extends HttpServlet {
 		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
 		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
 		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente"); 
-		pedido = new Pedido(cliente, usuario);
+		
 		for (Processador processador : listaProcessadores) {
 			String id = "processador_" + processador.getId();
 			int quantidade = Integer.parseInt(request.getParameter(id)); 

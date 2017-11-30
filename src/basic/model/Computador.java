@@ -1,8 +1,17 @@
-package basic.model;
+	package basic.model;
 
 public class Computador extends Produto{
+	private PlacaMae pm;
+	
+	public Computador() {
+		super();
+	}
 
-	public Computador(int id) {
-		super(id);
+	public PlacaMae getPm() {
+		return pm;
+	}
+
+	public void setPm(PlacaMae pm) {
+		this.pm = pm;
 	}
 }
