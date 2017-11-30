@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
@@ -13,7 +14,7 @@ public class Pedido {
 	private int ano;
 	private int mes;
 	private int dia;
-	private List<ItemDePedido> itensDePedido;
+	private List<ItemDePedido> itensDePedido = new ArrayList<ItemDePedido>();
 
 	public Pedido(Cliente cliente, Usuario usuario) {
 		this.cliente = cliente;
@@ -90,5 +91,13 @@ public class Pedido {
 		
 	
 		return data;
+	}
+
+	public List<ItemDePedido> getItensDePedido() {
+		return itensDePedido;
+	}
+
+	public void addItemDePedido(ItemDePedido item) {
+		this.itensDePedido.add(item);
 	}
 }

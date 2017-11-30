@@ -3,6 +3,8 @@ package basic.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 import basic.model.*;
 
@@ -23,12 +25,17 @@ public class PedidoDAO extends DAO {
         return pedido;
     }
 
-    public static int insertPedido(Cliente cliente, Usuario usuario) {
+    public static int insertPedido(Pedido pedido) {
 		final String query = "INSERT INTO pedidos VALUES (NULL, ?, ?);";
 		final String queryID = "SELECT LAST_INSERT_ID();";
 		int idPedido = -1;
-		int idCliente = cliente.getId();
-		int idUsuario = usuario.getId();
+		int idCliente = pedido.getCliente().getId();
+		int idUsuario = pedido.getUsuario().getId();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int month = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
 		PreparedStatement statement = null;
 		ResultSet result = null;
 
