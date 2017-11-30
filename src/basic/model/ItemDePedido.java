@@ -7,6 +7,13 @@ public class ItemDePedido {
 	private Produto prod;
 	private String tipo;
 	
+	public ItemDePedido(Pedido pedido, Produto prod, int quantidade, String tipo) {
+		this.pedido = pedido;
+		this.prod = prod;
+		this.quantidade = quantidade;
+		this.tipo = tipo;
+	}
+	
 	public ItemDePedido(int id, Pedido pedido, Produto prod, int quantidade, String tipo) {
 		this.id = id;
 		this.pedido = pedido;

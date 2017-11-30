@@ -1,5 +1,7 @@
 package basic.model;
 
+import java.util.List;
+
 public class Pedido {
 	private int id;
 	private Cliente cliente;
@@ -7,11 +9,18 @@ public class Pedido {
 	private int ano;
 	private int mes;
 	private int dia;
+	private List<ItemDePedido> itensDePedido;
 
+	public Pedido(Cliente cliente, Usuario usuario) {
+		this.cliente = cliente;
+		this.usuario = usuario;
+	}
+	
 	public Pedido(int id, Cliente cliente, Usuario usuario) {
 		this.id = id;
 		this.cliente = cliente;
 		this.usuario = usuario;
+		
 	}
 	
 	public int getId() {

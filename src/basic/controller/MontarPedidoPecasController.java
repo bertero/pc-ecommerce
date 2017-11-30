@@ -8,17 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
-import basic.dao.ArrayList;
 import basic.dao.ClienteDAO;
 import basic.dao.DiscoRigidoDAO;
+import basic.dao.MemoriaDAO;
 import basic.dao.PedidoDAO;
+import basic.dao.PlacaMaeDAO;
 import basic.dao.ProcessadorDAO;
 import basic.dao.UsuarioDAO;
 import basic.model.*;
-import basic.model.processador.*;
-import basic.model.discoRigido.*;
-import basic.model.memoria.*;
 
 import java.util.List;
 
@@ -28,10 +27,6 @@ import java.util.List;
 @WebServlet("/pecas-selecionadas")
 public class MontarPedidoPecasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
-	private List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getProcessadores();
-	private List<Memoria> listaMemorias = MemoriaDAO.getInstance().getProcessadores();
-	private List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getProcessadores();
 	private Pedido pedido;
 	private Cliente cliente;
 	private Usuario usuario = UsuarioDAO.getInstance().getUsuarioById(1);
@@ -55,9 +50,44 @@ public class MontarPedidoPecasController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idPedido = Integer.parseInt(request.getParameter("idPedido"));
-		pedido = PedidoDAO.getInstance().getPedidoById(idPedido);
-		List<Processador> processadoresSelecionados = (List) request.getParameter("processadoresSelecionados");
+		List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
+		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
+		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
+		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
+		List<ItemDePedido> listaDeItens = new ArrayList<ItemDePedido>();
+		cliente = ClienteDAO.getInstance().getClienteByCpf(request.getParameter("cpfCliente")); 
+		pedido = new Pedido(cliente, usuario);
+		for (Processador processador : listaProcessadores) {
+			String id = "processador_" + processador.getId();
+			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			if (quantidade > 0) {
+				listaDeItens.add(new ItemDePedido(pedido, processador, quantidade, "processador"));
+			}
+		}
+		
+		for (Memoria mem : listaMemorias) {
+			String id = "memoria_" + mem.getId();
+			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			if (quantidade > 0) {
+				listaDeItens.add(new ItemDePedido(pedido, mem, quantidade, "processador"));
+			}
+		}
+		
+		for (PlacaMae pm : listaPlacasMae) {
+			String id = "placaMae_" + pm.getId();
+			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			if (quantidade > 0) {
+				listaDeItens.add(new ItemDePedido(pedido, pm, quantidade, "processador"));
+			}
+		}
+		
+		for (DiscoRigido hd : listaDiscosRigidos) {
+			String id = "processador_" + hd.getId();
+			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			if (quantidade > 0) {
+				listaDeItens.add(new ItemDePedido(pedido, hd, quantidade, "processador"));
+			}
+		}
 		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
         requestDispatcher.forward(request, response);

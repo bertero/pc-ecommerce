@@ -9,17 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import basic.dao.ClienteDAO;
-import basic.dao.DiscoRigidoDAO;
-import basic.dao.PedidoDAO;
-import basic.dao.ProcessadorDAO;
-import basic.dao.UsuarioDAO;
-import basic.model.*;
-import basic.model.processador.*;
-import basic.model.discoRigido.*;
-import basic.model.memoria.*;
-
-import java.util.List;
+import basic.dao.*;
 
 /**
  * Servlet implementation class ProcessadorController
@@ -27,13 +17,6 @@ import java.util.List;
 @WebServlet("/montar-pedido")
 public class MontarPedidoInitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
-	private List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getProcessadores();
-	private List<Memoria> listaMemorias = MemoriaDAO.getInstance().getProcessadores();
-	private List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getProcessadores();
-	private Pedido pedido;
-	private Cliente cliente;
-	private Usuario usuario = UsuarioDAO.getInstance().getUsuarioById(1);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,13 +37,11 @@ public class MontarPedidoInitController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		cliente = ClienteDAO.getInstance().getClienteByCpf(request.getParameter("cpf"));
-		int idPedido = PedidoDAO.insertPedido(cliente, usuario);
-		request.setAttribute("idPedido", idPedido);
-		request.setAttribute("listaProcessadores", listaProcessadores);
-		request.setAttribute("listaPlacasMae", listaPlacasMae);
-		request.setAttribute("listaMemorias", listaMemorias);
-		request.setAttribute("listaDiscosRigidos", listaDiscosRigidos);
+		request.setAttribute("cpfCliente", request.getParameter("cpfCliente"));
+		request.setAttribute("listaProcessadores", ProcessadorDAO.getInstance().getProcessadores());
+		request.setAttribute("listaPlacasMae", PlacaMaeDAO.getInstance().getPlacasMae());
+		request.setAttribute("listaMemorias", MemoriaDAO.getInstance().getMemorias());
+		request.setAttribute("listaDiscosRigidos", DiscoRigidoDAO.getInstance().getDiscosRigidos());
 		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
         requestDispatcher.forward(request, response);

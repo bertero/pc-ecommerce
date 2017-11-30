@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import basic.model.DAO;
 import basic.model.DiscoRigido;
 
 public class DiscoRigidoDAO extends DAO{
@@ -27,7 +26,7 @@ public class DiscoRigidoDAO extends DAO{
         return discoRigido;
     }
 
-    public List<DiscoRigido> getDiscosRigido() {
+    public List<DiscoRigido> getDiscosRigidos() {
         List<DiscoRigido> ListaDiscosRigido = new ArrayList<DiscoRigido>();
 
         try {
