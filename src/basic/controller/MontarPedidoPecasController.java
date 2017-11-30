@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import basic.dao.ClienteDAO;
 import basic.dao.DiscoRigidoDAO;
 import basic.dao.MemoriaDAO;
-import basic.dao.PedidoDAO;
 import basic.dao.PlacaMaeDAO;
 import basic.dao.ProcessadorDAO;
 import basic.dao.UsuarioDAO;
@@ -28,8 +27,6 @@ import java.util.List;
 public class MontarPedidoPecasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Pedido pedido;
-	private Cliente cliente;
-	private Usuario usuario = UsuarioDAO.getInstance().getUsuarioById(1);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,14 +51,14 @@ public class MontarPedidoPecasController extends HttpServlet {
 		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
 		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
 		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
-		List<ItemDePedido> listaDeItens = new ArrayList<ItemDePedido>();
-		cliente = ClienteDAO.getInstance().getClienteByCpf(request.getParameter("cpfCliente")); 
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente"); 
 		pedido = new Pedido(cliente, usuario);
 		for (Processador processador : listaProcessadores) {
 			String id = "processador_" + processador.getId();
 			int quantidade = Integer.parseInt(request.getParameter(id)); 
 			if (quantidade > 0) {
-				listaDeItens.add(new ItemDePedido(pedido, processador, quantidade, "processador"));
+				pedido.addItemDePedido(new ItemDePedido(pedido, processador, quantidade, "processador"));
 			}
 		}
 		
@@ -69,7 +66,7 @@ public class MontarPedidoPecasController extends HttpServlet {
 			String id = "memoria_" + mem.getId();
 			int quantidade = Integer.parseInt(request.getParameter(id)); 
 			if (quantidade > 0) {
-				listaDeItens.add(new ItemDePedido(pedido, mem, quantidade, "processador"));
+				pedido.addItemDePedido(new ItemDePedido(pedido, mem, quantidade, "memoria"));
 			}
 		}
 		
@@ -77,7 +74,7 @@ public class MontarPedidoPecasController extends HttpServlet {
 			String id = "placaMae_" + pm.getId();
 			int quantidade = Integer.parseInt(request.getParameter(id)); 
 			if (quantidade > 0) {
-				listaDeItens.add(new ItemDePedido(pedido, pm, quantidade, "processador"));
+				pedido.addItemDePedido(new ItemDePedido(pedido, pm, quantidade, "placaMae"));
 			}
 		}
 		
@@ -85,11 +82,12 @@ public class MontarPedidoPecasController extends HttpServlet {
 			String id = "processador_" + hd.getId();
 			int quantidade = Integer.parseInt(request.getParameter(id)); 
 			if (quantidade > 0) {
-				listaDeItens.add(new ItemDePedido(pedido, hd, quantidade, "processador"));
+				pedido.addItemDePedido(new ItemDePedido(pedido, hd, quantidade, "discoRigido"));
 			}
 		}
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
+		request.getSession().setAttribute("pedido", pedido);
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/carrinho.jsp");
         requestDispatcher.forward(request, response);
 	}
 
