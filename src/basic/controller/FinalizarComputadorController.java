@@ -1,6 +1,7 @@
 package basic.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
-import basic.model.Pedido;
+import basic.model.Computador;
+import basic.model.DiscoRigido;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/confirmar-pedido")
-public class ConfirmarPedidoController extends HttpServlet {
+@WebServlet("/memoria-select")
+public class FinalizarComputadorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConfirmarPedidoController() {
+    public FinalizarComputadorController () {
         super();
     }
 
@@ -30,11 +32,8 @@ public class ConfirmarPedidoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
-		PedidoDAO.getInstance();
-		PedidoDAO.insertPedido(pedido);
-		request.getSession().setAttribute("usuario", UsuarioDAO.getInstance().getUsuarioById(1));
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoInit.jsp");
+		request.setAttribute("listaPlacasMae", PlacaMaeDAO.getInstance().getPlacasMae());
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/placaMae.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -42,7 +41,18 @@ public class ConfirmarPedidoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pageNotFound.jsp");
+		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
+		Computador pc = (Computador)request.getSession().getAttribute("pc");
+		
+		for (DiscoRigido hd : listaDiscosRigidos) {
+			String id = "discoRigido_" + hd.getId();
+			int quant = Integer.parseInt(request.getParameter(id));
+			for (int i = 0; i < quant; i++) pc.setHd(hd);
+		}
+		
+		request.getSession().setAttribute("pc", pc);
+		
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/quantidadeComputador.jsp");
         requestDispatcher.forward(request, response);
 	}
 

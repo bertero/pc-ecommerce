@@ -18,7 +18,7 @@ import basic.model.Processador;
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/processador-select")
+@WebServlet("/memoria-select")
 public class MemoriaSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

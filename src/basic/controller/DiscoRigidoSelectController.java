@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
 import basic.model.Computador;
+import basic.model.DiscoRigido;
 import basic.model.Memoria;
-import basic.model.Processador;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/processador-select")
+@WebServlet("/disco-rigido-select")
 public class DiscoRigidoSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,9 +42,20 @@ public class DiscoRigidoSelectController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Incomplete
+		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
+		Computador pc = (Computador)request.getSession().getAttribute("pc");
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/carrinho.jsp");
+		for (Memoria mem : listaMemorias) {
+			String id = "memoria_" + mem.getId();
+			int quant = Integer.parseInt(request.getParameter(id));
+			for (int i = 0; i < quant; i++) pc.setMem(mem);
+		}
+		
+		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
+		request.getSession().setAttribute("pc", pc);
+		request.setAttribute("listaDiscosRigidos", listaDiscosRigidos);
+		
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/discoRigido.jsp");
         requestDispatcher.forward(request, response);
 	}
 

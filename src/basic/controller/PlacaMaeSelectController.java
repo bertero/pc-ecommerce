@@ -12,15 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
 import basic.model.Computador;
-import basic.model.ItemDePedido;
-import basic.model.Pedido;
 import basic.model.PlacaMae;
 import basic.model.Processador;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/placa-mae")
+@WebServlet("/placa-mae-select")
 public class PlacaMaeSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

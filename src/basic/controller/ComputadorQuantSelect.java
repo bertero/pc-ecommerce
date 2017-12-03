@@ -1,7 +1,6 @@
 package basic.controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
+import basic.model.Computador;
+import basic.model.ItemDePedido;
 import basic.model.Pedido;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/confirmar-pedido")
-public class ConfirmarPedidoController extends HttpServlet {
+@WebServlet("/memoria-select")
+public class ComputadorQuantSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConfirmarPedidoController() {
+    public ComputadorQuantSelect () {
         super();
     }
 
@@ -30,11 +31,8 @@ public class ConfirmarPedidoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
-		PedidoDAO.getInstance();
-		PedidoDAO.insertPedido(pedido);
-		request.getSession().setAttribute("usuario", UsuarioDAO.getInstance().getUsuarioById(1));
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoInit.jsp");
+		request.setAttribute("listaPlacasMae", PlacaMaeDAO.getInstance().getPlacasMae());
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/placaMae.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -42,7 +40,15 @@ public class ConfirmarPedidoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/pageNotFound.jsp");
+		Computador pc = (Computador)request.getSession().getAttribute("pc");
+		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");		
+		int quant = Integer.parseInt(request.getParameter("quantidadeComputador"));
+		ItemDePedido item = new ItemDePedido(pedido, pc, quant, "computador");
+		pedido.addItemDePedido(item);
+		request.getSession().removeAttribute("pc");
+		request.setAttribute("listaDeItens", pedido.getItensDePedido());
+		
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/carrinho.jsp");
         requestDispatcher.forward(request, response);
 	}
 
