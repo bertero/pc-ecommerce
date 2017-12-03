@@ -12,22 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
 import basic.model.Computador;
-import basic.model.ItemDePedido;
-import basic.model.Pedido;
 import basic.model.PlacaMae;
 import basic.model.Processador;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/placa-mae")
-public class PlacaMaeController extends HttpServlet {
+@WebServlet("/processador-select")
+public class ProcessadorSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PlacaMaeController () {
+    public ProcessadorSelectController () {
         super();
     }
 
@@ -44,18 +42,20 @@ public class PlacaMaeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
 		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
 		Computador pc = new Computador();
+		List<Processador> listaProcessadores = null;
 		
 		for (PlacaMae pm : listaPlacasMae) {
 			String id = "placaMae_" + pm.getId();
 			int selecionada = Integer.parseInt(request.getParameter(id)); 
 			if (selecionada > 0) {
 				pc.setPm(pm);
+				listaProcessadores = ProcessadorDAO.getInstance().getProcessadoresBySoquete(pm.getSoquete());
 			}
 		}
 		
+		 
 		request.getSession().setAttribute("pc", pc);
 		request.setAttribute("listaProcessadores", listaProcessadores);
 		

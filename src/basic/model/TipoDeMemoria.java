@@ -2,13 +2,13 @@ package basic.model;
 
 public class TipoDeMemoria {
 
-	private int idTipoDeMemoria;
+	private int id;
 	private String nome;
 
 	
 	
-	public TipoDeMemoria(int idTipoDeMemoria, String nome) {
-		this.idTipoDeMemoria = idTipoDeMemoria;
+	public TipoDeMemoria(int id, String nome) {
+		this.id = id;
 		this.nome = nome;
 	}
 
@@ -20,8 +20,8 @@ public class TipoDeMemoria {
 		this.nome = nome;
 	}
 
-	public int getIdTipoDeMemoria() {
-		return idTipoDeMemoria;
+	public int getId() {
+		return id;
 	}
 
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 import basic.model.PlacaMae;
+import basic.model.Soquete;
 import basic.model.TipoDeMemoria;
 
 
@@ -25,8 +26,9 @@ public class PlacaMaeDAO extends DAO {
 
     private PlacaMae createPlacaMaeFromRow(ResultSet rs) throws SQLException {
     	TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("tipoDeMemoria_id"));
+    	Soquete soquete = SoqueteDAO.getInstance().getSoqueteById(rs.getInt("soquete_id"));
         PlacaMae placaMae = new PlacaMae( rs.getString("fabricante"), rs.getDouble("preco"), rs.getInt("id"), rs.getInt("slots")
-        		, rs.getString("modelo"),tipoDeMemoria);
+        		, rs.getString("modelo"),tipoDeMemoria, soquete);
 
         return placaMae;
     }
@@ -37,7 +39,7 @@ public class PlacaMaeDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM placaMae ORDER BY preco ASC";
+            String query = "SELECT * FROM placaMae ORDER BY id ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             ResultSet rs = preparedStatement.executeQuery();

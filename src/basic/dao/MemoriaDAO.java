@@ -53,6 +53,25 @@ public class MemoriaDAO extends DAO {
 		
 	 }
 	
-	
+	public List<Memoria> getMemoriasByTipo(TipoDeMemoria tipo)
+	{
+		List<Memoria> ListaDeMemorias = new ArrayList<Memoria>();
+		try
+		{
+			Connection connection = getConexao();
+			String query = "SELECT * FROM Memoria WHERE tipo_de_memoria_id = ? ORDER BY id ASC";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, tipo.getId());
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				ListaDeMemorias.add(createMemoriaFromRow(rs));
+			}
+		}catch(SQLException e) {
+            e.printStackTrace();
+        }
+		return ListaDeMemorias;
+		
+	 }
 	
 }

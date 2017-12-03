@@ -4,13 +4,16 @@ public class PlacaMae extends PecaDeComputador{
 	private int slots;
 	private String modelo;
 	private TipoDeMemoria tipoDeMemoria;
+	private Soquete soquete;
 
 	public PlacaMae(String fabricante, double preco, int id, int slots,
-			String modelo, TipoDeMemoria tipoDeMemoria) {
-		super(id, fabricante, preco);
+			String modelo, TipoDeMemoria tipoDeMemoria, Soquete soquete) {
+		super(fabricante, preco);
+		this.setId(id);
 		this.slots = slots;
 		this.modelo = modelo;
 		this.tipoDeMemoria = tipoDeMemoria;
+		this.soquete = soquete;
 	}
 
 	public TipoDeMemoria getTipoDeMemoria() {
@@ -35,6 +38,14 @@ public class PlacaMae extends PecaDeComputador{
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public Soquete getSoquete() {
+		return soquete;
+	}
+
+	public void setSoquete(Soquete soquete) {
+		this.soquete = soquete;
 	}
 	
 }

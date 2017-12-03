@@ -74,4 +74,29 @@ public class ProcessadorDAO extends DAO {
         return processador;
     }
 
+    public List<Processador> getProcessadoresBySoquete(Soquete soq) {
+        List<Processador> ListaProcessadores = new ArrayList<Processador>();
+
+        try {
+            Connection connection = getConexao();
+
+            String query = "SELECT * FROM processadores WHERE soquete_id = ? ORDER BY id ASC";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, soq.getId());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+            	ListaProcessadores.add(this.createProcessadorFromRow(rs));
+            }
+
+            connection.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ListaProcessadores;
+    }
+    
 }
