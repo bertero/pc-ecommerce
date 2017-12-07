@@ -21,21 +21,21 @@ public class PedidoDAO extends DAO {
     private Pedido createProcessadorFromRow(ResultSet rs) throws SQLException {
     	Cliente cliente = ClienteDAO.getInstance().getClienteById(rs.getInt("idCliente"));
     	Usuario usuario = UsuarioDAO.getInstance().getUsuarioById(rs.getInt("idUsuario"));
-    	Pedido pedido = new Pedido(rs.getInt("id"), cliente, usuario);
+    	Pedido pedido = new Pedido(rs.getInt("id"), cliente, usuario, rs.getInt("dia"), rs.getInt("mes"), rs.getInt("ano"));
+    	pedido.setItensDePedido(ItemDePedidoDAO.getInstance().getItensDePedidoByIdPedido(pedido));
         return pedido;
     }
 
     public static int insertPedido(Pedido pedido) {
-		final String query = "INSERT INTO pedidos VALUES (NULL, ?, ?);";
-		final String queryID = "SELECT LAST_INSERT_ID();";
-		int idPedido = -1;
+		final String query = "INSERT INTO pedidos VALUES (?, ?);";
 		int idCliente = pedido.getCliente().getId();
 		int idUsuario = pedido.getUsuario().getId();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int month = cal.get(Calendar.MONTH);
-		int year = cal.get(Calendar.YEAR);
+		int idPedido = -1;
+		int dia = cal.get(Calendar.DAY_OF_MONTH);
+		int mes = cal.get(Calendar.MONTH);
+		int ano = cal.get(Calendar.YEAR);
 		PreparedStatement statement = null;
 		ResultSet result = null;
 
@@ -51,10 +51,12 @@ public class PedidoDAO extends DAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				statement = connection.prepareStatement(queryID);
+				statement = connection.prepareStatement(query);
 				result = statement.executeQuery();
 				result.first();
 				idPedido = result.getInt(1);
+				pedido.setId(idPedido);
+				ItemDePedidoDAO.getInstance().insertItensDePedido(pedido);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -108,8 +110,9 @@ public class PedidoDAO extends DAO {
     	try
     	{
     		Connection connection = getConexao();
-    		String query = "SELECT * FROM pedidos WHERE mes = mesRefInt";
+    		String query = "SELECT * FROM pedidos WHERE mes = ?";
     		PreparedStatement prepared = connection.prepareStatement(query);
+    		prepared.setInt(1, mesRefInt);
     		ResultSet result = prepared.executeQuery();
     		while(result.next())
     		{

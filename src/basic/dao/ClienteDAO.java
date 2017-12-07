@@ -14,8 +14,8 @@ public class ClienteDAO extends DAO {
         return instance;
     }
 
-    private Cliente createProcessadorFromRow(ResultSet rs) throws SQLException {
-    	Cliente cliente = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
+    private Cliente createClienteFromRow(ResultSet rs) throws SQLException {
+    	Cliente cliente = new Cliente(rs.getInt("idCliente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("endereco"), rs.getString("telefone"));
 
         return cliente;
     }
@@ -32,7 +32,7 @@ public class ClienteDAO extends DAO {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                cliente = this.createProcessadorFromRow(rs);
+                cliente = this.createClienteFromRow(rs);
             }
             connection.close();
 
@@ -55,7 +55,7 @@ public class ClienteDAO extends DAO {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                cliente = this.createProcessadorFromRow(rs);
+                cliente = this.createClienteFromRow(rs);
             }
             connection.close();
 

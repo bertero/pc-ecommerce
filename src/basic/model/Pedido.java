@@ -21,15 +21,22 @@ public class Pedido {
 		this.usuario = usuario;
 	}
 	
-	public Pedido(int id, Cliente cliente, Usuario usuario) {
+	public Pedido(int id, Cliente cliente, Usuario usuario, int dia, int mes, int ano) {
 		this.id = id;
 		this.cliente = cliente;
 		this.usuario = usuario;
+		this.dia = dia;
+		this.mes = mes;
+		this.ano = ano;
 		
 	}
 	
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Cliente getCliente() {
@@ -99,5 +106,9 @@ public class Pedido {
 
 	public void addItemDePedido(ItemDePedido item) {
 		this.itensDePedido.add(item);
+	}
+	
+	public void setItensDePedido(List<ItemDePedido> itens) {
+		this.itensDePedido = itens;
 	}
 }

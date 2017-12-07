@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import basic.model.Memoria;
+import basic.model.Processador;
 import basic.model.TipoDeMemoria;
 
 
@@ -39,7 +40,7 @@ public class MemoriaDAO extends DAO {
 		try
 		{
 			Connection connection = getConexao();
-			String query = "SELECT * FROM Memoria ORDER BY preco ASC";
+			String query = "SELECT * FROM memorias ORDER BY preco ASC";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next())
@@ -59,7 +60,7 @@ public class MemoriaDAO extends DAO {
 		try
 		{
 			Connection connection = getConexao();
-			String query = "SELECT * FROM Memoria WHERE tipo_de_memoria_id = ? ORDER BY id ASC";
+			String query = "SELECT * FROM memorias WHERE tipo_de_memoria_id = ? ORDER BY id ASC";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, tipo.getId());
 			ResultSet rs = preparedStatement.executeQuery();
@@ -73,5 +74,30 @@ public class MemoriaDAO extends DAO {
 		return ListaDeMemorias;
 		
 	 }
+	public Memoria getMemoriaById(int id) {
+		Memoria memoria = null;
+        try {
+            Connection connection = getConexao();
+
+            String query = "SELECT * FROM memorias WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                memoria = this.createMemoriaFromRow(rs);
+            }
+
+
+
+            connection.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return memoria;
+	}
 	
 }

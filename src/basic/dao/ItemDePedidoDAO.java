@@ -20,35 +20,16 @@ public class ItemDePedidoDAO extends DAO {
     }
 
     private ItemDePedido createItemDePedidoFromRow(ResultSet rs) throws SQLException {
-    	int idProd;
-    	int idProcessador = rs.getInt("idProcessador");
-    	int idPlacaMae = rs.getInt("idPlacaMae");
-    	int idMemoria = rs.getInt("idMemoria");
-    	int idDiscoRigido = rs.getInt("idDiscoRigido");
-    	int idComputador = rs.getInt("idComputador");
-    	String tipo;
+    	int idProd = rs.getInt("idProduto");
+    	String tipo = rs.getString("tipo");
     	Produto prod;
     	
-    	if (idProcessador != 0) {
-    		idProd = idProcessador;
-    		tipo = "processador";
-    		prod = ProcessadorDAO.getInstance().getProcessadorById(idProd);
-    	} else if (idPlacaMae != 0) {
-    		idProd = idPlacaMae;
-    		tipo = "placaMae";
-    		prod = PlacaMaeDAO.getInstance().getPlacaMaeById(idProd);
-    	} else if (idMemoria != 0) {
-    		idProd = idMemoria;
-    		tipo = "memoria";
-    		prod = MemoriaDAO.getInstance().getMemoriaById(idProd);
-    	} else if (idDiscoRigido != 0) {
-    		idProd = idDiscoRigido;
-    		tipo = "discoRigido";
-    		prod = DiscoRigidoDAO.getInstance().getDiscoRigidoById(idProd);
-    	} else if (idComputador != 0) {
-    		idProd = idComputador;
-    		tipo = "computador";
-    		prod = ComputadorDAO.getInstance().getComputadorById(idComputador);
+    	if (tipo == "processador")      prod = ProcessadorDAO.getInstance().getProcessadorById(idProd);
+    	else if (tipo == "placaMae")    prod = PlacaMaeDAO.getInstance().getPlacaMaeById(idProd);
+    	else if (tipo == "memoria")     prod = MemoriaDAO.getInstance().getMemoriaById(idProd);
+    	else if (tipo == "discoRigido") prod = DiscoRigidoDAO.getInstance().getDiscoRigidoById(idProd);
+    	else if (tipo == "computador") {
+    		prod = ComputadorDAO.getInstance().getPCById(idProd);
     	}
     	Pedido pedido = PedidoDAO.getInstance().getPedidoById(rs.getInt("idPedido"));
     	ItemDePedido itemDePedido = new ItemDePedido(rs.getInt("id"), pedido, prod, rs.getInt("quantidade"), tipo);
@@ -150,5 +131,48 @@ public class ItemDePedidoDAO extends DAO {
 
         return itemDePedido;
     }
+
+	public void insertItensDePedido(Pedido pedido) {
+		List<ItemDePedido> itens = pedido.getItensDePedido();
+		PreparedStatement statement = null;
+		final String query = "INSERT INTO itensDePedido VALUES (?, ?, ?, ?);";
+		
+		for (ItemDePedido item : itens) {
+			if (item.getTipo() == "computador") {
+				ComputadorDAO.getInstance().insertPC((Computador)item.getProduto());
+			}
+			try {
+				Connection connection = getConexao();
+				try {
+					statement = connection.prepareStatement(query);
+					statement.setInt(1, pedido.getId());
+					statement.setInt(2, item.getProduto().getId());
+					statement.setInt(2, item.getQuantidade());
+					statement.setString(2, item.getTipo());
+					statement.execute();
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						statement.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }
