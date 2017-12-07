@@ -5,9 +5,8 @@ public class PecaDeComputador extends Produto{
 	
 	private String fabricante;
 	
-	public PecaDeComputador(String fabricante, double preco) {
-		super();
-		this.setPreco(preco);
+	public PecaDeComputador(int id,String fabricante, double preco) {
+		super(id, preco);
 		this.fabricante = fabricante;
 	}
 
