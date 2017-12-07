@@ -8,7 +8,7 @@ public class PlacaMae extends PecaDeComputador{
 
 	public PlacaMae(String fabricante, double preco, int id, int slots,
 			String modelo, TipoDeMemoria tipoDeMemoria, Soquete soquete) {
-		super(fabricante, preco);
+		super(id, fabricante, preco);
 		this.setId(id);
 		this.slots = slots;
 		this.modelo = modelo;

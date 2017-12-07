@@ -77,7 +77,19 @@ public class Pedido {
 		double valorTotal = 0;
 		for(ItemDePedido itemPedido:this.itensDePedido)
 		{
-		 	valorTotal = valorTotal + itemPedido.getProduto().getPreco();
+			if (itemPedido.getTipo() == "computador") {
+				Computador pc = (Computador)itemPedido.getProduto();
+				if (itemPedido.getQuantidade() > 4) valorTotal += pc.calculaPreco() * 0.85;
+				else valorTotal += pc.calculaPreco() * 0.9;
+			} else {
+				PecaDeComputador peca = (PecaDeComputador)itemPedido.getProduto();
+				double desconto = 1;
+				if (itemPedido.getTipo() == "memoria" && itemPedido.getQuantidade() > 7) desconto = 0.9;
+				else if (itemPedido.getTipo() == "placaMae" && itemPedido.getQuantidade() > 4) desconto = 0.92;
+				else if (itemPedido.getTipo() == "processador" && itemPedido.getQuantidade() > 4) desconto = 0.93;
+				else if (itemPedido.getTipo() == "discoRigido" && itemPedido.getQuantidade() > 4) desconto = 0.93;
+				valorTotal += peca.getPreco()*desconto;
+			}
 		}
 		return valorTotal;
 	}

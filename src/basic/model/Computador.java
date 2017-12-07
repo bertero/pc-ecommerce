@@ -62,8 +62,8 @@ public class Computador extends Produto{
 		return hd2;
 	}
 	
-	public int calculaPreco() {
-		int preco = 0;
+	public double calculaPreco() {
+		double preco = 0;
 		if (this.pm != null) preco += this.pm.getPreco();
 		if (this.proc != null) preco += this.proc.getPreco();
 		if (this.mem1 != null) {

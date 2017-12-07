@@ -22,7 +22,7 @@ public class ItemDePedidoDAO extends DAO {
     private ItemDePedido createItemDePedidoFromRow(ResultSet rs) throws SQLException {
     	int idProd = rs.getInt("idProduto");
     	String tipo = rs.getString("tipo");
-    	Produto prod;
+    	Produto prod = null;
     	
     	if (tipo == "processador")      prod = ProcessadorDAO.getInstance().getProcessadorById(idProd);
     	else if (tipo == "placaMae")    prod = PlacaMaeDAO.getInstance().getPlacaMaeById(idProd);
