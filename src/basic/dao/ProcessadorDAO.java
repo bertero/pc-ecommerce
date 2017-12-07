@@ -74,6 +74,20 @@ public class ProcessadorDAO extends DAO {
         return processador;
     }
 
+    public void ApagarProcessador(int id)
+    {
+    	try
+    	{
+    		Connection con = getConexao();
+    		String query = "DELETE FROM processadores WHERE id = ?";
+    		PreparedStatement preparedStatement = con.prepareStatement(query);
+    		preparedStatement.setInt(1, id);
+    		preparedStatement.executeQuery();
+    		
+    	}
+    	catch(SQLException e){ e.printStackTrace();}
+    }
+    
     public List<Processador> getProcessadoresBySoquete(Soquete soq) {
         List<Processador> ListaProcessadores = new ArrayList<Processador>();
 
