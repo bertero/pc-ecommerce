@@ -37,7 +37,7 @@ public class ItemDePedidoDAO extends DAO {
     }
 
     public int insertItemDePedido(Pedido pedido, Produto produto, int quantidade) {
-		final String query = "INSERT INTO itensDePedidos VALUES (NULL, ?, ?, ?);";
+		final String query = "INSERT INTO itemDePedido VALUES (NULL, ?, ?, ?);";
 		final String queryID = "SELECT LAST_INSERT_ID();";
 		int idItemDePedido = -1;
 		int idPedido = pedido.getId();

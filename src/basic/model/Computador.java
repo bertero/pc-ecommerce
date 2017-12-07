@@ -6,8 +6,8 @@ public class Computador extends Produto{
 	private DiscoRigido hd1 = null, hd2 = null;
 	private Processador proc;
 	
-	public Computador() {
-		super();
+	public Computador(int id, double preco) {
+		super(id,preco);
 	}
 
 	public PlacaMae getPm() {

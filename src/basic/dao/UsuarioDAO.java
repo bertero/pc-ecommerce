@@ -24,7 +24,7 @@ public class UsuarioDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM usuarios WHERE id = ?";
+            String query = "SELECT * FROM usuario WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

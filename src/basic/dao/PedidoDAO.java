@@ -27,7 +27,7 @@ public class PedidoDAO extends DAO {
     }
 
     public static int insertPedido(Pedido pedido) {
-		final String query = "INSERT INTO pedidos VALUES (?, ?);";
+		final String query = "INSERT INTO pedido VALUES (?, ?);";
 		int idCliente = pedido.getCliente().getId();
 		int idUsuario = pedido.getUsuario().getId();
 		Calendar cal = Calendar.getInstance();
@@ -82,7 +82,7 @@ public class PedidoDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM pedidos WHERE id = ?";
+            String query = "SELECT * FROM pedido WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 
@@ -110,7 +110,7 @@ public class PedidoDAO extends DAO {
     	try
     	{
     		Connection connection = getConexao();
-    		String query = "SELECT * FROM pedidos WHERE mes = ?";
+    		String query = "SELECT * FROM pedido WHERE mes = ?";
     		PreparedStatement prepared = connection.prepareStatement(query);
     		prepared.setInt(1, mesRefInt);
     		ResultSet result = prepared.executeQuery();
