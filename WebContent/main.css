@@ -23,3 +23,8 @@
 	margin: 15px;
 	padding: 5px;
 }
+
+form
+{
+	border-style:none;
+}

@@ -7,6 +7,9 @@
 <%@ page import="basic.model.PlacaMae" %>
 <%@ page import="basic.model.Processador" %>
 <%@ page import="basic.model.Soquete" %>
+<%@ page import="basic.model.PecaDeComputador" %>
+<%@ page import="basic.model.ItemDePedido" %>
+<%@ page import="basic.model.Computador" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,133 +64,117 @@
 						<%
 									}
 									else if (peca instanceof Processador) {
-										...
+										Processador processador = (Processador) peca;
 						%>
-						
+						<div class="row">
+							<div class="produto col-md-8">
+								<h4>Processador</h4>
+								<label>Modelo</label><br>
+								<%= processador.getModelo() %>
+								<label>Fabricante</label><br>
+								<%= processador.getFabricante() %>
+								<label>Frequência</label><br>
+								<%= processador.getFrequencia() %>
+								<label>Soquete</label><br>
+								<%= processador.getSoquete() %>
+							</div>
+							<div class="quantos col-md-2">
+								<label>Preço</label><br>
+								<%= processador.getPreco() %>
+								<label>Quantidade</label>
+								<%= item.getQuantidade() %>
+							</div>
+						</div><br>
+						<%
+									}
+									else if (peca instanceof Memoria) {
+										Memoria memoria = (Memoria) peca;
+						 %>
+						<div class="row">
+							<div class="produto col-md-8">
+								<h4>Memória</h4>
+								<label>Fabricante</label><br>
+								<%= memoria.getFabricante() %>
+								<label>Tipo de memória</label><br>
+								<%= memoria.getTipoDeMemoria() %>
+								<label>Frequência</label><br>
+								<%= memoria.getFrequencia() %>
+							</div>
+							<div class="quantos col-md-2">
+								<label>Preço</label><br>
+								<%= memoria.getPreco() %>
+								<label>Quantidade</label>
+								<%= item.getQuantidade() %>
+							</div>
+						</div><br>
+						<%
+									}
+									else if (peca instanceof DiscoRigido) {
+										DiscoRigido discoRigido = (DiscoRigido) peca;
+						 %>
+						<div class="row">
+							<div class="produto col-md-8">
+								<h4>Disco Rígido</h4>
+								<label>Tipo</label><br>
+								<%= discoRigido.getTipo() %>
+								<label>Fabricante</label><br>
+								<%= discoRigido.getFabricante() %>
+								<label>Tamanho</label><br>
+								<%= discoRigido.getTamanho() %>
+							</div>
+							<div class="quantos col-md-2">
+								<label>Preço</label><br>
+								<%= discoRigido.getPreco() %>
+								<label>Quantidade</label>
+								<%= item.getQuantidade() %>
+							</div>
+						</div><br>
 						<%
 									}
 								}
+								else if (item.getProduto() instanceof Computador) {
+									Computador computador = (Computador) item.getProduto();
 						 %>
-						
-						<% } %>
+						 <div class="row">
+							<div class="produto col-md-8">
+								<h4>Computador</h4>
+								<label>Placa Mãe</label><br>
+								<%= computador.getPm().getFabricante() %>
+								<label>Memória</label><br>
+								<%= computador.getMem1().getFabricante() %>
+								<%= computador.getMem2().getFabricante() %>
+								<%= computador.getMem3().getFabricante() %>
+								<%= computador.getMem4().getFabricante() %>
+								<label>Disco Rígido</label><br>
+								<%= computador.getHd1().getFabricante() %>
+								<%= computador.getHd2().getFabricante() %>
+								<label>Processador</label><br>
+								<%= computador.getProc().getFabricante() %>
+							</div>
+							<div class="quantos col-md-2">
+								<label>Preço</label><br>
+								<%= computador.calculaPreco() %>
+								<label>Quantidade</label>
+								<%= item.getQuantidade() %>
+							</div>
+						</div><br>
+						<% 
+								}
+							}
+						 %>
 					</div>
 					
-					<!-- fim -->
-					<div>
-						<div class="lista_produtos">
-							<h4>Placa Mãe</h4>
-							<% 
-								ArrayList<PlacaMae> listaDePlacaMae = (ArrayList<PlacaMae>) request.getAttribute("listaPlacasMae"); 
-								
-								for (PlacaMae placaMae : listaDePlacaMae) { 
-									TipoDeMemoria tipoDeMemoria = placaMae.getTipoDeMemoria();
-							%>
-							<div class="row">
-								<div class="produto col-md-8">
-									<label>Modelo</label><br>
-									<%= placaMae.getModelo() %>
-									<label>Fabricante</label><br>
-									<%= placaMae.getFabricante() %>
-									<label>Tipo de memória</label><br>
-									<%= placaMae.getTipoDeMemoria() %>
-									<label>Slots</label><br>
-									<%= placaMae.getSlots() %>
-								</div>
-								<div class="quantos col-md-2">
-									<label>Preço</label><br>
-									<%= placaMae.getPreco() %>
-									<label>Quantidade</label>
-									<%= placaMae. %>
-								</div>
-							</div><br>
-							<% }; %>
-						</div>
-						
-						<div class="lista_produtos">
-							<h4>Processador</h4>
-							<% 
-								ArrayList<Processador> listaDeProcessador = (ArrayList<Processador>) request.getAttribute("listaProcessadores"); 
-								
-								for (Processador processador : listaDeProcessador) { 
-									Soquete soquete = processador.getSoquete();
-							%>
-							<div class="row">
-								<div class="produto col-md-8">
-									<label>Modelo</label><br>
-									<%= processador.getModelo() %>
-									<label>Fabricante</label><br>
-									<%= processador.getFabricante() %>
-									<label>Frequência</label><br>
-									<%= processador.getFrequencia() %>
-									<label>Soquete</label><br>
-									<%= processador.getSoquete() %>
-								</div>
-								<div class="quantos col-md-2">
-									<label>Preço</label><br>
-									<%= processador.getPreco() %>
-									<label for="processador<%= processador.getId() %>">Quantidade:</label>
-									<input type="text" name="processador<%= processador.getId() %>" class="form_control" style="width:30px" />
-								</div>
-							</div><br>
-							<% }; %>
-						</div>
-						
-						<div class="lista_produtos">
-							<h4>Memória</h4>
-							<% 
-								ArrayList<Memoria> listaDeMemoria = (ArrayList<Memoria>) request.getAttribute("listaMemorias"); 
-								
-								for (Memoria memoria : listaDeMemoria) { 
-									TipoDeMemoria tipoDeMemoria = memoria.getTipoDeMemoria();
-							%>
-							<div class="row">
-								<div class="produto col-md-8">
-									<label>Fabricante</label><br>
-									<%= memoria.getFabricante() %>
-									<label>Tipo de memória</label><br>
-									<%= memoria.getTipoDeMemoria() %>
-									<label>Frequência</label><br>
-									<%= memoria.getFrequencia() %>
-								</div>
-								<div class="quantos col-md-2">
-									<label>Preço</label><br>
-									<%= memoria.getPreco() %>
-									<label for="memoria<%= memoria.getId() %>">Quantidade:</label>
-									<input type="text" name="memoria<%= memoria.getId() %>" class="form_control" style="width:30px" />
-								</div>
-							</div><br>
-							<% }; %>
-						</div>
-						
-						<div class="lista_produtos">
-							<h4>Disco Rígido</h4>
-							<% 
-								ArrayList<DiscoRigido> listaDeDiscoRigido = (ArrayList<DiscoRigido>) request.getAttribute("listaDiscosRigidos"); 
-								
-								for (DiscoRigido discoRigido : listaDeDiscoRigido) { 
-							%>
-							<div class="row">
-								<div class="produto col-md-8">
-									<label>Tipo</label><br>
-									<%= discoRigido.getTipo() %>
-									<label>Fabricante</label><br>
-									<%= discoRigido.getFabricante() %>
-									<label>Tamanho</label><br>
-									<%= discoRigido.getTamanho() %>
-								</div>
-								<div class="quantos col-md-2">
-									<label>Preço</label><br>
-									<%= discoRigido.getPreco() %>
-									<label for="discoRigido<%= discoRigido.getId() %>">Quantidade:</label>
-									<input type="text" name="discoRigido<%= discoRigido.getId() %>" class="form_control" style="width:30px" />
-								</div>
-							</div><br>
-							<% }; %>
-						</div>
-						<button type="submit" class="btn btn-primary">
-							Confirmar
-						</button>
-					</div>
+					<div class="row" >
+						<form role="form" method="get" action="/pecas-avulsas" >
+							<button type="submit" class="btn btn-primary">Adicionar mais peças</button>
+						</form>
+						<form role="form" method="get" action="/placa-mae-select" >
+							<button type="submit" class="btn btn-primary">Adicionar um computador</button>
+						</form>
+						<form role="form" method="get" action="/confirmar-pedido" >
+							<button type="submit" class="btn btn-primary">Finalizar pedido</button>
+						</form>
+					</div>					
 				</div>
 				
 				<div class="col-md-2">

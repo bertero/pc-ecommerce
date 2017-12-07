@@ -16,15 +16,15 @@
 		<div class="container-fluid">
 			<div class="row">
 			
-				<div class="col-md-4">
+				<div class="col-md-2">
 				</div>
 				
-				<div class="col-md-4" id="main_div">
+				<div class="col-md-8" id="main_div">
 					<div>
 						<h4>Para montar um pedido, informe o CPF do cliente que deseja fazer a compra.</h4>
 					</div>
 					<div>
-						<form role="form">
+						<form role="form" method="post" action="/montar-pedido">
 							<div class="form-group">
 								<label for="cpfCliente">CPF do cliente</label>
 								<input type="text" name="cpfCliente" class="form-control" placeholder="CPF do cliente" />
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-2">
 				</div>
 				
 			</div>

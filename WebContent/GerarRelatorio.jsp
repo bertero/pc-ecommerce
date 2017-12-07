@@ -19,7 +19,7 @@
 	<div class="col-md-2"></div>
 	
 	<div class="col-md-8" id ="main_div_relatorio">
-		<form style="padding:10px; border-style:solid;border-width:2px; border-color:gray; background-color:white">
+		<form method="post" action="/GerarRelatorioController" style="padding:10px; border-style:solid;border-width:2px; border-color:gray; background-color:white">
 			<div >
 				
 				<label for="mes">Mês:</label>

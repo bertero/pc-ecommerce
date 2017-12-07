@@ -6,12 +6,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="bootstrap.min.css" rel="stylesheet">
 	<link href="main.css" rel="stylesheet">
-	<title>Deseja computador?</title>
+	<title>Finalizar Computador</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="main_title">
-			<h1>Montar Pedido - Peças selecionadas!</h1>
+			<h1>Montar Computador - Quantidade desejada</h1>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -21,16 +21,20 @@
 				
 				<div class="col-md-8" id="main_div">
 					<div>
-						<h4>Deseja montar um computador com as peças selecionadas?</h4>
+						<h4>Deseja montar quantos computadores com essas configurações?</h4>
 						(Taxa de montagem de R$0,00)
 					</div><br>
 					<div>
-						<form role="form" method="get" action="/nao-montar">
-							<button type="submit" class="btn btn-danger">
-								Não, sem computador.
-							</button>
+						<form role="form" method="post" action="/">
+							<label for="quantidadeComputador">Quantidade</label>
+							<input type="text" name="quantidadeComputador" class="form-control" />
 							<button type="submit" class="btn btn-primary">
-								Sim, montar computador.
+								Finalizar computador
+							</button>
+						</form>
+						<form role="form" method="get" action="/confirmar-pedido">
+							<button type="submit" class="btn btn-danger">
+								Cancelar
 							</button>
 						</form>
 					</div>

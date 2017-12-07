@@ -14,14 +14,14 @@ import basic.dao.*;
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/relatorio")
-public class RelatorioController extends HttpServlet {
+@WebServlet("/GerarRelatorioController")
+public class GerarRelatorioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RelatorioController() {
+    public GerarRelatorioController() {
         super();
     }
 
@@ -41,7 +41,7 @@ public class RelatorioController extends HttpServlet {
 		request.setAttribute("listaDePedidosPorMes", PedidoDAO.getInstance().getPedidosPorMes(request.getParameter("mes")));
 	
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoSelecionaPecas.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/VisualizarRelatoriosView.jsp");
         requestDispatcher.forward(request, response);
 	}
 
