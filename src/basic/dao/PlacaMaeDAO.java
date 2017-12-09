@@ -25,8 +25,8 @@ public class PlacaMaeDAO extends DAO {
     }
 
     private PlacaMae createPlacaMaeFromRow(ResultSet rs) throws SQLException {
-    	TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("tipoDeMemoria_id"));
-    	Soquete soquete = SoqueteDAO.getInstance().getSoqueteById(rs.getInt("soquete_id"));
+    	TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("idTipoDeMemoria"));
+    	Soquete soquete = SoqueteDAO.getInstance().getSoqueteById(rs.getInt("idSoquete"));
         PlacaMae placaMae = new PlacaMae( rs.getString("fabricante"), rs.getDouble("preco"), rs.getInt("id"), rs.getInt("slots")
         		, rs.getString("modelo"),tipoDeMemoria, soquete);
 
