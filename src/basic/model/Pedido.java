@@ -75,23 +75,27 @@ public class Pedido {
 	public double getPrecoTotalDoPedido()
 	{
 		double valorTotal = 0;
-		for(ItemDePedido itemPedido:this.itensDePedido)
-		{
+		int quantPC = 0, quantPM = 0, quantProc = 0, quantMem = 0, quantHD = 0;
+		for(ItemDePedido itemPedido:this.itensDePedido) {
 			if (itemPedido.getTipo() == "computador") {
 				Computador pc = (Computador)itemPedido.getProduto();
-				if (itemPedido.getQuantidade() > 4) valorTotal += pc.calculaPreco() * 0.85;
-				else valorTotal += pc.calculaPreco() * 0.9;
+				if (itemPedido.getQuantidade() > 4) valorTotal += pc.calculaPreco();
+				quantPC += itemPedido.getQuantidade();
 			} else {
 				PecaDeComputador peca = (PecaDeComputador)itemPedido.getProduto();
-				double desconto = 1;
-				if (itemPedido.getTipo() == "memoria" && itemPedido.getQuantidade() > 7) desconto = 0.9;
-				else if (itemPedido.getTipo() == "placaMae" && itemPedido.getQuantidade() > 4) desconto = 0.92;
-				else if (itemPedido.getTipo() == "processador" && itemPedido.getQuantidade() > 4) desconto = 0.93;
-				else if (itemPedido.getTipo() == "discoRigido" && itemPedido.getQuantidade() > 4) desconto = 0.93;
-				valorTotal += peca.getPreco()*desconto;
+				valorTotal += peca.getPreco();
+				if (itemPedido.getTipo() == "placaMae") quantPM += itemPedido.getQuantidade();
+				if (itemPedido.getTipo() == "processador") quantProc += itemPedido.getQuantidade();
+				if (itemPedido.getTipo() == "memoria") quantMem += itemPedido.getQuantidade();
+				if (itemPedido.getTipo() == "discoRigido") quantHD += itemPedido.getQuantidade();
 			}
 		}
-		return valorTotal;
+		double desconto = 1;
+		if (quantProc > 4 || quantHD > 4) desconto = 0.93;
+		if (quantPM > 4) desconto = 0.92;
+		if (quantMem > 7 || quantPC > 0) desconto = 0.9;
+		if (quantPC > 4) desconto = 0.85;
+		return valorTotal*desconto;
 	}
 	public Date getDataDoPedido() throws ParseException
 	{

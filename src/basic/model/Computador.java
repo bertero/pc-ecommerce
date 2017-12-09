@@ -6,10 +6,13 @@ public class Computador extends Produto{
 	private DiscoRigido hd1 = null, hd2 = null;
 	private Processador proc;
 	
-	public Computador(int id, double preco) {
-		super(id,preco);
+	public Computador(int id) {
+		super();
+		this.setId(id);
 	}
 
+	public Computador() {}
+	
 	public PlacaMae getPm() {
 		return pm;
 	}
@@ -62,7 +65,8 @@ public class Computador extends Produto{
 		return hd2;
 	}
 	
-	public double calculaPreco() {
+	public double calculaPreco() {		
+		final double precoMontagem = 300;
 		double preco = 0;
 		if (this.pm != null) preco += this.pm.getPreco();
 		if (this.proc != null) preco += this.proc.getPreco();
@@ -80,6 +84,6 @@ public class Computador extends Produto{
 			preco += this.hd1.getPreco();
 			if (this.hd2 != null) preco += this.hd2.getPreco();
 		}
-		return preco;
+		return preco + precoMontagem;
 	}
 }
