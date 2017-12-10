@@ -46,6 +46,7 @@ public class ComputadorQuantSelect extends HttpServlet {
 		ItemDePedido item = new ItemDePedido(pedido, pc, quant, "computador");
 		pedido.addItemDePedido(item);
 		request.getSession().removeAttribute("pc");
+		request.setAttribute("pedido", pedido);
 		request.setAttribute("listaDeItens", pedido.getItensDePedido());
 		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/carrinho.jsp");

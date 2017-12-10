@@ -91,6 +91,7 @@ public class MontarPedidoPecasController extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("pedido", pedido);
+		request.setAttribute("pedido", pedido);
 		request.setAttribute("listaDeItens", pedido.getItensDePedido());
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/carrinho.jsp");
         requestDispatcher.forward(request, response);

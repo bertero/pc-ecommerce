@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
-import basic.model.Cliente;
 import basic.model.Pedido;
-import basic.model.Usuario;
 
 /**
  * Servlet implementation class ProcessadorController

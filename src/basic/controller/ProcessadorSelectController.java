@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import basic.dao.*;
 import basic.model.Computador;
 import basic.model.Memoria;
-import basic.model.PlacaMae;
 import basic.model.Processador;
 
 /**

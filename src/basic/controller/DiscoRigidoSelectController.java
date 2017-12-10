@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import basic.dao.*;
 import basic.model.Computador;
 import basic.model.DiscoRigido;
-import basic.model.Memoria;
 
 /**
  * Servlet implementation class ProcessadorController

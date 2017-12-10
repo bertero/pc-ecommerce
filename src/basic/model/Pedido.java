@@ -2,7 +2,6 @@ package basic.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,31 +71,44 @@ public class Pedido {
 	}
 	
 	//valores calculados
-	public double getPrecoTotalDoPedido()
-	{
+	public double getPrecoTotalDoPedido() {
+		if (this.itensDePedido.isEmpty()) return 0;
 		double valorTotal = 0;
-		int quantPC = 0, quantPM = 0, quantProc = 0, quantMem = 0, quantHD = 0;
-		for(ItemDePedido itemPedido:this.itensDePedido) {
+		for (ItemDePedido itemPedido:this.itensDePedido) {
 			if (itemPedido.getTipo() == "computador") {
 				Computador pc = (Computador)itemPedido.getProduto();
-				if (itemPedido.getQuantidade() > 4) valorTotal += pc.calculaPreco();
-				quantPC += itemPedido.getQuantidade();
+				valorTotal += pc.calculaPreco() * itemPedido.getQuantidade();
 			} else {
 				PecaDeComputador peca = (PecaDeComputador)itemPedido.getProduto();
-				valorTotal += peca.getPreco();
-				if (itemPedido.getTipo() == "placaMae") quantPM += itemPedido.getQuantidade();
+				valorTotal += peca.getPreco() * itemPedido.getQuantidade();
+			}
+		}
+		return valorTotal * (1 - this.getDesconto());
+	}
+	
+	public double getDesconto() {
+		if (this.itensDePedido.isEmpty()) return 0;
+		int quantPC = 0, quantPM = 0, quantProc = 0, quantMem = 0, quantHD = 0;
+		for (ItemDePedido itemPedido : this.itensDePedido) {
+			if (itemPedido.getTipo() == "computador") {
+				quantPC += itemPedido.getQuantidade();
+			} else {
+				if (itemPedido.getTipo() == "placaMae")    quantPM += itemPedido.getQuantidade();
 				if (itemPedido.getTipo() == "processador") quantProc += itemPedido.getQuantidade();
-				if (itemPedido.getTipo() == "memoria") quantMem += itemPedido.getQuantidade();
+				if (itemPedido.getTipo() == "memoria")     quantMem += itemPedido.getQuantidade();
 				if (itemPedido.getTipo() == "discoRigido") quantHD += itemPedido.getQuantidade();
 			}
 		}
-		double desconto = 1;
-		if (quantProc > 4 || quantHD > 4) desconto = 0.93;
-		if (quantPM > 4) desconto = 0.92;
-		if (quantMem > 7 || quantPC > 0) desconto = 0.9;
-		if (quantPC > 4) desconto = 0.85;
-		return valorTotal*desconto;
+		
+		double desconto = 0;
+		if (quantProc > 4 || quantHD > 4) desconto = 0.07;
+		if (quantPM > 4)                  desconto = 0.08;
+		if (quantMem > 7 || quantPC > 0)  desconto = 0.1;
+		if (quantPC > 4)                  desconto = 0.15;
+		
+		return desconto;
 	}
+	
 	public Date getDataDoPedido() throws ParseException
 	{
 		String anoString = String.valueOf(this.ano);

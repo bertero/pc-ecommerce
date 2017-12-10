@@ -14,7 +14,6 @@ import basic.dao.*;
 import basic.model.Computador;
 import basic.model.DiscoRigido;
 import basic.model.Memoria;
-import basic.model.Processador;
 
 /**
  * Servlet implementation class ProcessadorController

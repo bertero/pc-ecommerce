@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import basic.model.Memoria;
-import basic.model.Processador;
 import basic.model.TipoDeMemoria;
 
 

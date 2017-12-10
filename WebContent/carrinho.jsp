@@ -7,6 +7,7 @@
 <%@ page import="basic.model.PlacaMae" %>
 <%@ page import="basic.model.Processador" %>
 <%@ page import="basic.model.Soquete" %>
+<%@ page import="basic.model.Pedido" %>
 <%@ page import="basic.model.PecaDeComputador" %>
 <%@ page import="basic.model.ItemDePedido" %>
 <%@ page import="basic.model.Computador" %>
@@ -35,12 +36,14 @@
 					</div>					
 					<div class="lista_produtos">
 						<% 
+							Pedido pedido = (Pedido) request.getAttribute("pedido");
 							ArrayList<ItemDePedido> listaDeItens = (ArrayList<ItemDePedido>) request.getAttribute("listaDeItens");
-							for (ItemDePedido item : listaDeItens) {
-								if (item.getProduto() instanceof PecaDeComputador) {
-									PecaDeComputador peca = (PecaDeComputador) item.getProduto();
-									if (peca instanceof PlacaMae) {
-										PlacaMae placaMae = (PlacaMae) peca;
+							if (!listaDeItens.isEmpty()) {
+								for (ItemDePedido item : listaDeItens) {
+									if (item.getProduto() instanceof PecaDeComputador) {
+										PecaDeComputador peca = (PecaDeComputador) item.getProduto();
+										if (peca instanceof PlacaMae) {
+											PlacaMae placaMae = (PlacaMae) peca;
 						%>
 						<div class="row">
 							<div class="produto col-md-8">
@@ -167,21 +170,48 @@
 							</div>
 						</div><br>
 						<% 
+									}
 								}
-							}
+							} else {
 						 %>
+							<div class="row" >
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+							Carrinho Vazio!
+							</div>
+							<div class="col-md-1"></div>
+						</div>
 					</div>
 					
+					<% } if (pedido != null) { %>
 					<div class="row" >
-						<form role="form" method="get" action="/First_Web/pecas-avulsas" >
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+						<label>Desconto aplicado:</label>
+						<%= 100 * pedido.getDesconto() %>%
+						<label>Valor Total do Pedido:</label>
+						R$ <%= pedido.getPrecoTotalDoPedido() %>
+						</div>
+					</div>
+					<% } %>
+					
+					<div class="row" >
+						<div class="col-md-4">
+							<form role="form" method="get" action="/First_Web/pecas-avulsas" >
 							<button type="submit" class="btn btn-primary">Adicionar mais peças</button>
 						</form>
-						<form role="form" method="get" action="/First_Web/placa-mae-select" >
+						</div>
+						<div class="col-md-4">
+							<form role="form" method="get" action="/First_Web/placa-mae-select" >
 							<button type="submit" class="btn btn-primary">Adicionar um computador</button>
 						</form>
-						<form role="form" method="get" action="/First_Web/confirmar-pedido" >
+						</div>
+						<div class="col-md-4">
+							<form role="form" method="get" action="/First_Web/confirmar-pedido" >
 							<button type="submit" class="btn btn-primary">Finalizar pedido</button>
 						</form>
+						</div>
 					</div>					
 				</div>
 				
