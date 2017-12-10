@@ -16,7 +16,7 @@ import basic.model.Pedido;
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/memoria-select")
+@WebServlet("/computador-quant-select")
 public class ComputadorQuantSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

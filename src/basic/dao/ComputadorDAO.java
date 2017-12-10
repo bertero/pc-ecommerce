@@ -38,7 +38,7 @@ public class ComputadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM computadores WHERE id = ?";
+            String query = "SELECT * FROM computador WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

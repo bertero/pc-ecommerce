@@ -27,7 +27,7 @@ public class MemoriaDAO extends DAO {
 	
 	public Memoria createMemoriaFromRow(ResultSet rs) throws SQLException
 	{
-		TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("tipoDeMemoria_id"));
+		TipoDeMemoria tipoDeMemoria = TipoDeMemoriaDAO.getInstance().getTipoDeMemoriaById(rs.getInt("idTipoDeMemoria"));
 		Memoria memoria = new Memoria(rs.getInt("id"), rs.getString("fabricante"), rs.getDouble("preco"), rs.getString("frequencia"),
 				rs.getString("tamanho"), tipoDeMemoria );
 		return memoria;
@@ -40,7 +40,7 @@ public class MemoriaDAO extends DAO {
 		try
 		{
 			Connection connection = getConexao();
-			String query = "SELECT * FROM memorias ORDER BY preco ASC";
+			String query = "SELECT * FROM memoria ORDER BY preco ASC";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next())
@@ -60,7 +60,7 @@ public class MemoriaDAO extends DAO {
 		try
 		{
 			Connection connection = getConexao();
-			String query = "SELECT * FROM memorias WHERE tipo_de_memoria_id = ? ORDER BY id ASC";
+			String query = "SELECT * FROM memoria WHERE idTipoDeMemoria = ? ORDER BY id ASC";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, tipo.getId());
 			ResultSet rs = preparedStatement.executeQuery();
@@ -79,7 +79,7 @@ public class MemoriaDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM memorias WHERE id = ?";
+            String query = "SELECT * FROM memoria WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

@@ -42,20 +42,18 @@ public class DiscoRigidoSelectController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
+		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
 		Computador pc = (Computador)request.getSession().getAttribute("pc");
 		
-		for (Memoria mem : listaMemorias) {
-			String id = "memoria_" + mem.getId();
+		for (DiscoRigido hd : listaDiscosRigidos) {
+			String id = "discoRigido" + hd.getId();
 			int quant = Integer.parseInt(request.getParameter(id));
-			for (int i = 0; i < quant; i++) pc.setMem(mem);
+			for (int i = 0; i < quant; i++) pc.setHd(hd);
 		}
 		
-		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
 		request.getSession().setAttribute("pc", pc);
-		request.setAttribute("listaDiscosRigidos", listaDiscosRigidos);
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/discoRigido.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/quantidadeComputador.jsp");
         requestDispatcher.forward(request, response);
 	}
 

@@ -18,7 +18,7 @@ public class ProcessadorDAO extends DAO {
     }
 
     private Processador createProcessadorFromRow(ResultSet rs) throws SQLException {
-    	Soquete soquete = SoqueteDAO.getInstance().getSoqueteById(rs.getInt("soquete_id"));
+    	Soquete soquete = SoqueteDAO.getInstance().getSoqueteById(rs.getInt("idSoquete"));
         Processador processador = new Processador(rs.getInt("id"), rs.getString("modelo"), rs.getString("frequencia"), rs.getString("fabricante"), rs.getDouble("preco"), soquete);
 
         return processador;
@@ -30,7 +30,7 @@ public class ProcessadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM processadores ORDER BY preco ASC";
+            String query = "SELECT * FROM processador ORDER BY preco ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -53,7 +53,7 @@ public class ProcessadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM processadores WHERE id = ?";
+            String query = "SELECT * FROM processador WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 
@@ -79,7 +79,7 @@ public class ProcessadorDAO extends DAO {
     	try
     	{
     		Connection con = getConexao();
-    		String query = "DELETE FROM processadores WHERE id = ?";
+    		String query = "DELETE FROM processador WHERE id = ?";
     		PreparedStatement preparedStatement = con.prepareStatement(query);
     		preparedStatement.setInt(1, id);
     		preparedStatement.executeQuery();
@@ -94,7 +94,7 @@ public class ProcessadorDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM processadores WHERE soquete_id = ? ORDER BY id ASC";
+            String query = "SELECT * FROM processador WHERE idSoquete = ? ORDER BY id ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, soq.getId());
 

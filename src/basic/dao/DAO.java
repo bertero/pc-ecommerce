@@ -8,8 +8,8 @@ public class DAO {
     private static String USER = "root";
     private static String PASSWORD = "";
     private static String HOST = "localhost";
-    private static Integer PORT = 4747;
-    private static String DB = "mdb108";
+    private static Integer PORT = 3306;
+    private static String DB = "labSoft2017";
 
     protected DAO() {
         try {

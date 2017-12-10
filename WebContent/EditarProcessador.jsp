@@ -17,17 +17,17 @@
 			
 			<div class="row">
 				<div class="col-md-4" >
-					<form style="border-style:none"  method="post" action="/EditarProcessadorController">
+					<form style="border-style:none"  method="post" action="/First_Web/EditarProcessadorController">
 						<button style="width:100%" type="submit"  type ="submit">Editar Dados da Peça</button>
 					</form> 
 				</div>
 				<div class="col-md-4">
-					<form style="border-style:none" method = "post" action="/RemoverProcessadorController">
+					<form style="border-style:none" method = "post" action="/First_Web/RemoverProcessadorController">
 						<button style="width:100%" type="submit"  type ="submit">Remover Processador</button>
 					</form>
 				</div>
 				<div class="col-md-4">
-					<form style="border-style:none" method = "post" action="/VisualizarProcessadorController">
+					<form style="border-style:none" method = "post" action="/First_Web/VisualizarProcessadorController">
 						<button style="width:100%" type="submit"  type ="submit">Visualizar Peça</button>
 					</form>
 				</div>

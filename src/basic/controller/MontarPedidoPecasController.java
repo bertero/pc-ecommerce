@@ -22,7 +22,7 @@ import java.util.List;
 @WebServlet("/pecas-avulsas")
 public class MontarPedidoPecasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Pedido pedido;
+	private Pedido pedido = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,34 +51,40 @@ public class MontarPedidoPecasController extends HttpServlet {
 		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
 		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
 		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
+		pedido = (Pedido)request.getSession().getAttribute("pedido");
 		
 		for (Processador processador : listaProcessadores) {
-			String id = "processador_" + processador.getId();
-			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			String id = "processador" + processador.getId();
+			int quantidade = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quantidade = Integer.parseInt(request.getParameter(id)); 
 			if (quantidade > 0) {
-				pedido.addItemDePedido(new ItemDePedido(pedido, processador, quantidade, "processador"));
+				ItemDePedido novoItem = new ItemDePedido(pedido, processador, quantidade, "processador");
+				pedido.addItemDePedido(novoItem);
 			}
 		}
 		
 		for (Memoria mem : listaMemorias) {
-			String id = "memoria_" + mem.getId();
-			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			String id = "memoria" + mem.getId();
+			int quantidade = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quantidade = Integer.parseInt(request.getParameter(id));
 			if (quantidade > 0) {
 				pedido.addItemDePedido(new ItemDePedido(pedido, mem, quantidade, "memoria"));
 			}
 		}
 		
 		for (PlacaMae pm : listaPlacasMae) {
-			String id = "placaMae_" + pm.getId();
-			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			String id = "placaMae" + pm.getId();
+			int quantidade = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quantidade = Integer.parseInt(request.getParameter(id));
 			if (quantidade > 0) {
 				pedido.addItemDePedido(new ItemDePedido(pedido, pm, quantidade, "placaMae"));
 			}
 		}
 		
 		for (DiscoRigido hd : listaDiscosRigidos) {
-			String id = "processador_" + hd.getId();
-			int quantidade = Integer.parseInt(request.getParameter(id)); 
+			String id = "discoRigido" + hd.getId();
+			int quantidade = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quantidade = Integer.parseInt(request.getParameter(id));
 			if (quantidade > 0) {
 				pedido.addItemDePedido(new ItemDePedido(pedido, hd, quantidade, "discoRigido"));
 			}

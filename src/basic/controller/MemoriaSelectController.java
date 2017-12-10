@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
 import basic.model.Computador;
+import basic.model.DiscoRigido;
 import basic.model.Memoria;
 import basic.model.Processador;
 
@@ -42,21 +43,20 @@ public class MemoriaSelectController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
+		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemorias();
 		Computador pc = (Computador)request.getSession().getAttribute("pc");
 		
-		for (Processador proc : listaProcessadores) {
-			String id = "processador_" + proc.getId(); 
-			if (Integer.parseInt(request.getParameter(id)) > 0) {
-				pc.setProc(proc);
-			}
+		for (Memoria mem : listaMemorias) {
+			String id = "memoria" + mem.getId();
+			int quant = Integer.parseInt(request.getParameter(id));
+			for (int i = 0; i < quant; i++) pc.setMem(mem);
 		}
 		
-		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemoriasByTipo(pc.getPm().getTipoDeMemoria());
+		List<DiscoRigido> listaDiscosRigidos = DiscoRigidoDAO.getInstance().getDiscosRigidos();
 		request.getSession().setAttribute("pc", pc);
-		request.setAttribute("listaMemorias", listaMemorias);
+		request.setAttribute("listaDiscosRigidos", listaDiscosRigidos);
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/memorias.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/discoRigido.jsp");
         requestDispatcher.forward(request, response);
 	}
 

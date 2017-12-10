@@ -25,7 +25,7 @@
 						(Taxa de montagem de R$0,00)
 					</div><br>
 					<div>
-						<form role="form" method="post" action="/">
+						<form role="form" method="post" action="/First_Web/computador-quant-select">
 							<label for="quantidadeComputador">Quantidade</label>
 							<input type="text" name="quantidadeComputador" class="form-control" />
 							<button type="submit" class="btn btn-primary">

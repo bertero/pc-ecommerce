@@ -27,7 +27,7 @@
 						<h4>Selecione um processador para adicionar ao computador</h4>
 					</div>
 					
-					<form role="form" method="post" action="/processador-select">
+					<form role="form" method="post" action="/First_Web/processador-select">
 						<div class="lista_produtos">
 							<h4>Processador</h4>
 							<% 

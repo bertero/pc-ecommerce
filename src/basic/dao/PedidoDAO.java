@@ -27,7 +27,7 @@ public class PedidoDAO extends DAO {
     }
 
     public static int insertPedido(Pedido pedido) {
-		final String query = "INSERT INTO pedido VALUES (?, ?);";
+		final String query = "INSERT INTO pedido (idCliente, idUsuario, dia, mes, ano) VALUES (?, ?, ?, ?, ?);";
 		int idCliente = pedido.getCliente().getId();
 		int idUsuario = pedido.getUsuario().getId();
 		Calendar cal = Calendar.getInstance();
@@ -42,22 +42,29 @@ public class PedidoDAO extends DAO {
 		try {
 			Connection connection = getConexao();
 			try {
-				statement = connection.prepareStatement(query);
+				statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, idCliente);
 				statement.setInt(2, idUsuario);
-				statement.execute();
+				statement.setInt(3, dia);
+				statement.setInt(4, mes);
+				statement.setInt(5, ano);
+				if (statement.executeUpdate() == 0) System.out.println("Insert Failed");
+				else {					
+					result = statement.getGeneratedKeys();
+			        result.next();
+					idPedido = result.getInt(1);
+					pedido.setId(idPedido);
+				}
 				try {
 					statement.close();
 				} catch (SQLException e) {
+					System.out.println("closing error");
 					e.printStackTrace();
 				}
 				statement = connection.prepareStatement(query);
-				result = statement.executeQuery();
-				result.first();
-				idPedido = result.getInt(1);
-				pedido.setId(idPedido);
 				ItemDePedidoDAO.getInstance().insertItensDePedido(pedido);
 			} catch (SQLException e) {
+				System.out.println("insert error");
 				e.printStackTrace();
 			} finally {
 				try {
@@ -72,6 +79,7 @@ public class PedidoDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
+			System.out.println("connection error");
 			e.printStackTrace();
 		}
 		return idPedido;

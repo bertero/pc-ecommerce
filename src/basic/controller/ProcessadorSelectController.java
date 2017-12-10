@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.dao.*;
 import basic.model.Computador;
+import basic.model.Memoria;
 import basic.model.PlacaMae;
 import basic.model.Processador;
 
@@ -42,24 +43,21 @@ public class ProcessadorSelectController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
-		Computador pc = new Computador();
-		List<Processador> listaProcessadores = null;
+		List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
+		Computador pc = (Computador)request.getSession().getAttribute("pc");
 		
-		for (PlacaMae pm : listaPlacasMae) {
-			String id = "placaMae_" + pm.getId();
-			int selecionada = Integer.parseInt(request.getParameter(id)); 
-			if (selecionada > 0) {
-				pc.setPm(pm);
-				listaProcessadores = ProcessadorDAO.getInstance().getProcessadoresBySoquete(pm.getSoquete());
+		for (Processador proc : listaProcessadores) {
+			String id = "processador" + proc.getId(); 
+			if (Integer.parseInt(request.getParameter(id)) > 0) {
+				pc.setProc(proc);
 			}
 		}
 		
-		 
+		List<Memoria> listaMemorias = MemoriaDAO.getInstance().getMemoriasByTipo(pc.getPm().getTipoDeMemoria());
 		request.getSession().setAttribute("pc", pc);
-		request.setAttribute("listaProcessadores", listaProcessadores);
+		request.setAttribute("listaMemorias", listaMemorias);
 		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/processador.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/memoria.jsp");
         requestDispatcher.forward(request, response);
 	}
 

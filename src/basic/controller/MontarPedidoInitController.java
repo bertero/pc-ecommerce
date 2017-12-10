@@ -17,7 +17,7 @@ import basic.model.Usuario;
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/montar-pedido")
+@WebServlet({"/", "", "/montar-pedido"})
 public class MontarPedidoInitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

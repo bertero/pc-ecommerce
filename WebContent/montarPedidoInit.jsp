@@ -24,7 +24,7 @@
 						<h4>Para montar um pedido, informe o CPF do cliente que deseja fazer a compra.</h4>
 					</div>
 					<div>
-						<form role="form" method="post" action="/montar-pedido">
+						<form role="form" method="post" action="/First_Web/montar-pedido">
 							<div class="form-group">
 								<label for="cpfCliente">CPF do cliente</label>
 								<input type="text" name="cpfCliente" class="form-control" placeholder="CPF do cliente" />

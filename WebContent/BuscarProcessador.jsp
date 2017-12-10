@@ -16,7 +16,7 @@
 </div>
 
 <div class = "col-md-8">
-	<form method="post" action="/BuscarProcessadorController" >
+	<form method="post" action="/First_Web/BuscarProcessadorController" >
 		<label for="processador">ID Processador: </label>
 		<input style="width:500px" name = "id" type = "text" placeholder = "Digite aqui o ID do processador desejado"></input>
 		<br>

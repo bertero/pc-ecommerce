@@ -25,7 +25,7 @@ public class SoqueteDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM soquetes WHERE id = ?";
+            String query = "SELECT * FROM soquete WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

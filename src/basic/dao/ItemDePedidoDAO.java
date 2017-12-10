@@ -37,7 +37,7 @@ public class ItemDePedidoDAO extends DAO {
     }
 
     public int insertItemDePedido(Pedido pedido, Produto produto, int quantidade) {
-		final String query = "INSERT INTO itemDePedido VALUES (NULL, ?, ?, ?);";
+		final String query = "INSERT INTO itemDePedido (idPedido, idProduto, quantidade) VALUES (?, ?, ?);";
 		final String queryID = "SELECT LAST_INSERT_ID();";
 		int idItemDePedido = -1;
 		int idPedido = pedido.getId();
@@ -135,7 +135,7 @@ public class ItemDePedidoDAO extends DAO {
 	public void insertItensDePedido(Pedido pedido) {
 		List<ItemDePedido> itens = pedido.getItensDePedido();
 		PreparedStatement statement = null;
-		final String query = "INSERT INTO itensDePedido VALUES (?, ?, ?, ?);";
+		final String query = "INSERT INTO itemDePedido (idPedido, idProduto, quantidade, tipo) VALUES (?, ?, ?, ?);";
 		
 		for (ItemDePedido item : itens) {
 			if (item.getTipo() == "computador") {
@@ -147,8 +147,8 @@ public class ItemDePedidoDAO extends DAO {
 					statement = connection.prepareStatement(query);
 					statement.setInt(1, pedido.getId());
 					statement.setInt(2, item.getProduto().getId());
-					statement.setInt(2, item.getQuantidade());
-					statement.setString(2, item.getTipo());
+					statement.setInt(3, item.getQuantidade());
+					statement.setString(4, item.getTipo());
 					statement.execute();
 					try {
 						statement.close();

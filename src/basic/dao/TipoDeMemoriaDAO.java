@@ -21,7 +21,7 @@ public class TipoDeMemoriaDAO extends DAO {
 	
 	public TipoDeMemoria CreateTipoDememoriaFromRow(ResultSet rs)throws SQLException
 	{
-		TipoDeMemoria tipoDeMemoria = new TipoDeMemoria(rs.getInt("idTipoDeMemoria"), rs.getString("nome"));
+		TipoDeMemoria tipoDeMemoria = new TipoDeMemoria(rs.getInt("id"), rs.getString("nome"));
 		return tipoDeMemoria;
 	}
 	

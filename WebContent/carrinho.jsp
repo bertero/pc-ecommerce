@@ -36,7 +36,9 @@
 					<div class="lista_produtos">
 						<% 
 							ArrayList<ItemDePedido> listaDeItens = (ArrayList<ItemDePedido>) request.getAttribute("listaDeItens");
+							System.out.println("test1");
 							for (ItemDePedido item : listaDeItens) {
+								System.out.println("test2");
 								if (item.getProduto() instanceof PecaDeComputador) {
 									PecaDeComputador peca = (PecaDeComputador) item.getProduto();
 									if (peca instanceof PlacaMae) {
@@ -142,12 +144,21 @@
 								<%= computador.getPm().getFabricante() %>
 								<label>Memória</label><br>
 								<%= computador.getMem1().getFabricante() %>
+								<% System.out.println("oi"); %>
+								<% if(computador.getMem2() != null) { %>
 								<%= computador.getMem2().getFabricante() %>
+								<% } %>
+								<% if(computador.getMem3() != null) { %>
 								<%= computador.getMem3().getFabricante() %>
-								<%= computador.getMem4().getFabricante() %>
+								<% } %>
+								<% if(computador.getMem3() != null) { %>
+								<%= computador.getMem3().getFabricante() %>
+								<% } %>
 								<label>Disco Rígido</label><br>
 								<%= computador.getHd1().getFabricante() %>
+								<% if(computador.getHd2() != null) { %>
 								<%= computador.getHd2().getFabricante() %>
+								<% } %>
 								<label>Processador</label><br>
 								<%= computador.getProc().getFabricante() %>
 							</div>
@@ -165,13 +176,13 @@
 					</div>
 					
 					<div class="row" >
-						<form role="form" method="get" action="/pecas-avulsas" >
+						<form role="form" method="get" action="/First_Web/pecas-avulsas" >
 							<button type="submit" class="btn btn-primary">Adicionar mais peças</button>
 						</form>
-						<form role="form" method="get" action="/placa-mae-select" >
+						<form role="form" method="get" action="/First_Web/placa-mae-select" >
 							<button type="submit" class="btn btn-primary">Adicionar um computador</button>
 						</form>
-						<form role="form" method="get" action="/confirmar-pedido" >
+						<form role="form" method="get" action="/First_Web/confirmar-pedido" >
 							<button type="submit" class="btn btn-primary">Finalizar pedido</button>
 						</form>
 					</div>					

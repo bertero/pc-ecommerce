@@ -42,18 +42,20 @@ public class PlacaMaeSelectController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Processador> listaProcessadores = ProcessadorDAO.getInstance().getProcessadores();
 		List<PlacaMae> listaPlacasMae = PlacaMaeDAO.getInstance().getPlacasMae();
 		Computador pc = new Computador();
+		List<Processador> listaProcessadores = null;
 		
 		for (PlacaMae pm : listaPlacasMae) {
-			String id = "placaMae_" + pm.getId();
+			String id = "placaMae" + pm.getId();
 			int selecionada = Integer.parseInt(request.getParameter(id)); 
 			if (selecionada > 0) {
 				pc.setPm(pm);
+				listaProcessadores = ProcessadorDAO.getInstance().getProcessadoresBySoquete(pm.getSoquete());
 			}
 		}
 		
+		 
 		request.getSession().setAttribute("pc", pc);
 		request.setAttribute("listaProcessadores", listaProcessadores);
 		
