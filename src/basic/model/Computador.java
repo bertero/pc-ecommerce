@@ -26,10 +26,10 @@ public class Computador extends Produto{
 	}
 
 	public void setMem(Memoria mem) {
-		if (this.mem1 != null) this.mem1 = mem;
-		else if (this.mem2 != null && this.pm.getSlots() > 1) this.mem2 = mem;
-		else if (this.mem3 != null && this.pm.getSlots() > 2) this.mem3 = mem;
-		else if (this.mem4 != null && this.pm.getSlots() > 3) this.mem4 = mem;
+		if (this.mem1 == null) this.mem1 = mem;
+		else if (this.mem2 == null && this.pm.getSlots() > 1) this.mem2 = mem;
+		else if (this.mem3 == null && this.pm.getSlots() > 2) this.mem3 = mem;
+		else if (this.mem4 == null && this.pm.getSlots() > 3) this.mem4 = mem;
 	}
 	
 	public Memoria getMem2() {
@@ -57,8 +57,8 @@ public class Computador extends Produto{
 	}
 
 	public void setHd(DiscoRigido hd) {
-		if (this.hd1 != null) this.hd1 = hd;
-		else if (this.hd2 != null) this.hd2 = hd;
+		if (this.hd1 == null) this.hd1 = hd;
+		else if (this.hd2 == null) this.hd2 = hd;
 	}
 
 	public DiscoRigido getHd2() {

@@ -36,9 +36,7 @@
 					<div class="lista_produtos">
 						<% 
 							ArrayList<ItemDePedido> listaDeItens = (ArrayList<ItemDePedido>) request.getAttribute("listaDeItens");
-							System.out.println("test1");
 							for (ItemDePedido item : listaDeItens) {
-								System.out.println("test2");
 								if (item.getProduto() instanceof PecaDeComputador) {
 									PecaDeComputador peca = (PecaDeComputador) item.getProduto();
 									if (peca instanceof PlacaMae) {
@@ -143,20 +141,19 @@
 								<label>Placa Mãe</label><br>
 								<%= computador.getPm().getFabricante() %>
 								<label>Memória</label><br>
+								<% if(computador.getMem1() != null) { %>
 								<%= computador.getMem1().getFabricante() %>
-								<% System.out.println("oi"); %>
-								<% if(computador.getMem2() != null) { %>
+								<% } if(computador.getMem2() != null) { %>
 								<%= computador.getMem2().getFabricante() %>
-								<% } %>
-								<% if(computador.getMem3() != null) { %>
+								<% } if(computador.getMem3() != null) { %>
 								<%= computador.getMem3().getFabricante() %>
-								<% } %>
-								<% if(computador.getMem3() != null) { %>
+								<% } if(computador.getMem3() != null) { %>
 								<%= computador.getMem3().getFabricante() %>
 								<% } %>
 								<label>Disco Rígido</label><br>
+								<% if(computador.getHd1() != null) { %>
 								<%= computador.getHd1().getFabricante() %>
-								<% if(computador.getHd2() != null) { %>
+								<% } if(computador.getHd2() != null) { %>
 								<%= computador.getHd2().getFabricante() %>
 								<% } %>
 								<label>Processador</label><br>
