@@ -70,6 +70,11 @@ public class Pedido {
 	//valores calculados
 	public double getPrecoTotalDoPedido() {
 		if (this.itensDePedido.isEmpty()) return 0;
+		return this.getPrecoTotalDoPedidoSemDesconto()* (1 - this.getDesconto());
+	}
+	
+	public double getPrecoTotalDoPedidoSemDesconto() {
+		if (this.itensDePedido.isEmpty()) return 0;
 		double valorTotal = 0;
 		for (ItemDePedido itemPedido:this.itensDePedido) {
 			if (itemPedido.getTipo() == "computador") {
@@ -80,7 +85,7 @@ public class Pedido {
 				valorTotal += peca.getPreco() * itemPedido.getQuantidade();
 			}
 		}
-		return valorTotal * (1 - this.getDesconto());
+		return valorTotal;
 	}
 	
 	public double getDesconto() {
