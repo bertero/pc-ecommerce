@@ -1,8 +1,5 @@
 package basic.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,23 +106,12 @@ public class Pedido {
 		return desconto;
 	}
 	
-	public Date getDataDoPedido() throws ParseException
-	{
+	public String getDataDoPedido() {
 		String anoString = String.valueOf(this.ano);
-		String mesString = String.valueOf(this.mes);
+		String mesString = String.valueOf(this.mes + 1);
 		String diaString = String.valueOf(this.dia);
-		String dataString = anoString+mesString+diaString;
-		
-		SimpleDateFormat dataFormater = new SimpleDateFormat("yyyy-mm-dd");
-		Date data = null;
-		try
-		{
-			 data = dataFormater.parse(dataString);
-		}
-		catch(ParseException e){e.printStackTrace();}
-		
-	
-		return data;
+		String dataString = anoString+"/"+mesString+"/"+diaString;
+		return dataString;
 	}
 
 	public List<ItemDePedido> getItensDePedido() {
