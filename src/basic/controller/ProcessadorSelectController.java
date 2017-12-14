@@ -46,8 +46,8 @@ public class ProcessadorSelectController extends HttpServlet {
 		Computador pc = (Computador)request.getSession().getAttribute("pc");
 		
 		for (Processador proc : listaProcessadores) {
-			String id = "processador" + proc.getId(); 
-			if (Integer.parseInt(request.getParameter(id)) > 0) {
+			String id = "processador" + proc.getId();
+			if (request.getParameter(id) != null && request.getParameter(id) != "" && Integer.parseInt(request.getParameter(id)) > 0) {
 				pc.setProc(proc);
 			}
 		}

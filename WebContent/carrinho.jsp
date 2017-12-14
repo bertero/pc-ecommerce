@@ -229,18 +229,22 @@
 					
 					<% } if (pedido != null) { %>
 					<div class="row" >
-						<div class="col-md-4"></div>
-						<div class="col-md-4"></div>
 						<div class="col-md-4">
 						<p>
-						<label>Desconto aplicado:</label>
-						<%= 100 * pedido.getDesconto() %>%
+						<label>Valor Total:</label>
+						<%= pedido.getPrecoTotalDoPedidoSemDesconto() %>
 						</p>
 						<p>
-						<label>Valor Total do Pedido:</label>
+						<label>Desconto aplicado:</label>
+						-<%= pedido.getPrecoTotalDoPedidoSemDesconto() * pedido.getDesconto() %>
+						</p>
+						<p>
+						<label>Valor Final:</label>
 						R$ <%= pedido.getPrecoTotalDoPedido() %>
 						</p>
 						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
 					</div>
 					<% } %>
 					
