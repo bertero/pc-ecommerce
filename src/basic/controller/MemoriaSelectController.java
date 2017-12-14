@@ -47,7 +47,8 @@ public class MemoriaSelectController extends HttpServlet {
 		
 		for (Memoria mem : listaMemorias) {
 			String id = "memoria" + mem.getId();
-			int quant = Integer.parseInt(request.getParameter(id));
+			int quant = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quant = Integer.parseInt(request.getParameter(id));
 			for (int i = 0; i < quant; i++) pc.setMem(mem);
 		}
 		

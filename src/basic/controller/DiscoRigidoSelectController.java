@@ -46,7 +46,8 @@ public class DiscoRigidoSelectController extends HttpServlet {
 		
 		for (DiscoRigido hd : listaDiscosRigidos) {
 			String id = "discoRigido" + hd.getId();
-			int quant = Integer.parseInt(request.getParameter(id));
+			int quant = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") quant = Integer.parseInt(request.getParameter(id));
 			for (int i = 0; i < quant; i++) pc.setHd(hd);
 		}
 		

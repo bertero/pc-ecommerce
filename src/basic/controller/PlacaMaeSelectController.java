@@ -48,7 +48,8 @@ public class PlacaMaeSelectController extends HttpServlet {
 		
 		for (PlacaMae pm : listaPlacasMae) {
 			String id = "placaMae" + pm.getId();
-			int selecionada = Integer.parseInt(request.getParameter(id)); 
+			int selecionada = 0;
+			if (request.getParameter(id) != null && request.getParameter(id) != "") selecionada = Integer.parseInt(request.getParameter(id)); 
 			if (selecionada > 0) {
 				pc.setPm(pm);
 				listaProcessadores = ProcessadorDAO.getInstance().getProcessadoresBySoquete(pm.getSoquete());
