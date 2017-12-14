@@ -89,17 +89,17 @@ public class ItemDePedidoDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM itensdepedidos WHERE idPedido = ?";
+            String query = "SELECT * FROM itemDePedido WHERE idPedido = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, idPedido);
 
             ResultSet rs = preparedStatement.executeQuery();
 
+            connection.close();
+            
             while (rs.next()) {
             	itensDePedido.add(this.createItemDePedidoFromRow(rs));
             }
-
-            connection.close();
 
         } catch(SQLException e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class ItemDePedidoDAO extends DAO {
         try {
             Connection connection = getConexao();
 
-            String query = "SELECT * FROM itensDePedidos WHERE id = ?";
+            String query = "SELECT * FROM itemDePedido WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

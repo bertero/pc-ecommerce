@@ -37,8 +37,8 @@ public class GerarRelatorioController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("listaDePedidosPorMes", PedidoDAO.getInstance().getPedidosPorMes(request.getParameter("mes")));
+		int mes = Integer.parseInt(request.getParameter("mes"))-1;
+		request.setAttribute("listaDePedidosPorMes", PedidoDAO.getInstance().getPedidosPorMes(mes));
 	
 		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/VisualizarRelatoriosView.jsp");

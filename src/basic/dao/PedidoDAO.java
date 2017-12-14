@@ -96,11 +96,11 @@ public class PedidoDAO extends DAO {
 
             ResultSet rs = preparedStatement.executeQuery();
 
+            connection.close();
+            
             if (rs.next()) {
                 pedido = this.createProcessadorFromRow(rs);
             }
-
-            connection.close();
 
         } catch(SQLException e) {
             e.printStackTrace();
@@ -110,9 +110,7 @@ public class PedidoDAO extends DAO {
     }
     
     //    pega pedidos com um mes de Referencia para gerar relatorio
-    public List<Pedido> getPedidosPorMes(String mesRef)
-    {
-    	int mesRefInt = Integer.parseInt(mesRef);
+    public List<Pedido> getPedidosPorMes(int mesRefInt) {
     	List<Pedido> ListaDePedidoPorMes = new ArrayList<Pedido>();
     	
     	try
