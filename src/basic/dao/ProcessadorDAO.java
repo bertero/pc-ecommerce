@@ -2,8 +2,11 @@ package basic.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import basic.model.Pedido;
 import basic.model.Processador;
 import basic.model.Soquete;
 
@@ -136,5 +139,52 @@ public class ProcessadorDAO extends DAO {
 
         return;
     }
+    
+    public static void insertProcessador(Processador proc) {
+		final String query = "INSERT INTO processador (fabricante, modelo, idSoquete, frequencia, preco) VALUES (?, ?, ?, ?, ?);";
+		PreparedStatement statement = null;
+		ResultSet result = null;
+
+		try {
+			Connection connection = getConexao();
+			try {
+				statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				statement.setString(1, proc.getFabricante());
+				statement.setString(2, proc.getModelo());
+				statement.setInt(3, proc.getSoquete().getId());
+				statement.setString(4, proc.getFrequencia());
+				statement.setDouble(5, proc.getPreco());
+				if (statement.executeUpdate() == 0) System.out.println("Insert Failed");
+				else {					
+					result = statement.getGeneratedKeys();
+			        result.next();
+				}
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					System.out.println("closing error");
+					e.printStackTrace();
+				}
+			} catch (SQLException e) {
+				System.out.println("insert error");
+				e.printStackTrace();
+			} finally {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("connection error");
+			e.printStackTrace();
+		}
+		return;
+	}
     
 }

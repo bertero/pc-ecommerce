@@ -22,7 +22,6 @@ import java.util.Random;
 @WebServlet("/AdicionarProcessadorController")
 public class AdicionarProcessadorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Processador> listaDeProcessador = new ArrayList<Processador>();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -58,7 +57,7 @@ public class AdicionarProcessadorController extends HttpServlet {
 	    
 	    Processador proc = new Processador(id, modelo, frequencia, fabricante, preco, soquete);
 	    
-	    
+	    ProcessadorDAO.getInstance().insertProcessador(proc);
 	    
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/BuscarProcessador.jsp");
         requestDispatcher.forward(request, response);
