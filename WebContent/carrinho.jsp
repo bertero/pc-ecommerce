@@ -48,22 +48,34 @@
 						<div class="row">
 							<div class="produto col-md-8">
 								<h4>Placa Mãe</h4>
-								<label>Modelo</label><br>
+								<p>
+								<label>Modelo</label>
 								<%= placaMae.getModelo() %>
-								<label>Fabricante</label><br>
+								</p>
+								<p>
+								<label>Fabricante</label>
 								<%= placaMae.getFabricante() %>
-								<label>Tipo de memória</label><br>
-								<%= placaMae.getTipoDeMemoria() %>
-								<label>Slots</label><br>
+								</p>
+								<p>
+								<label>Tipo de memória</label>
+								<%= placaMae.getTipoDeMemoria().getNome() %>
+								</p>
+								<p>
+								<label>Slots</label>
 								<%= placaMae.getSlots() %>
+								</p>
 							</div>
 							<div class="quantos col-md-2">
-								<label>Preço</label><br>
+								<p>
+								<label>Preço</label>
 								<%= placaMae.getPreco() %>
+								</p>
+								<p>
 								<label>Quantidade</label>
 								<%= item.getQuantidade() %>
+								</p>
 							</div>
-						</div><br>
+						</div>
 						<%
 									}
 									else if (peca instanceof Processador) {
@@ -72,22 +84,34 @@
 						<div class="row">
 							<div class="produto col-md-8">
 								<h4>Processador</h4>
-								<label>Modelo</label><br>
+								<p>
+								<label>Modelo</label>
 								<%= processador.getModelo() %>
-								<label>Fabricante</label><br>
+								</p>
+								<p>
+								<label>Fabricante</label>
 								<%= processador.getFabricante() %>
-								<label>Frequência</label><br>
+								</p>
+								<p>
+								<label>Frequência</label>
 								<%= processador.getFrequencia() %>
-								<label>Soquete</label><br>
-								<%= processador.getSoquete() %>
+								</p>
+								<p>
+								<label>Soquete</label>
+								<%= processador.getSoquete().getNome() %>
+								</p>
 							</div>
 							<div class="quantos col-md-2">
-								<label>Preço</label><br>
+								<p>
+								<label>Preço</label>
 								<%= processador.getPreco() %>
+								</p>
+								<p>
 								<label>Quantidade</label>
 								<%= item.getQuantidade() %>
+								</p>
 							</div>
-						</div><br>
+						</div>
 						<%
 									}
 									else if (peca instanceof Memoria) {
@@ -96,20 +120,30 @@
 						<div class="row">
 							<div class="produto col-md-8">
 								<h4>Memória</h4>
-								<label>Fabricante</label><br>
+								<p>
+								<label>Fabricante</label>
 								<%= memoria.getFabricante() %>
-								<label>Tipo de memória</label><br>
-								<%= memoria.getTipoDeMemoria() %>
-								<label>Frequência</label><br>
+								</p>
+								<p>
+								<label>Tipo de memória</label>
+								<%= memoria.getTipoDeMemoria().getNome() %>
+								</p>
+								<p>
+								<label>Frequência</label>
 								<%= memoria.getFrequencia() %>
+								</p>
 							</div>
 							<div class="quantos col-md-2">
-								<label>Preço</label><br>
+								<p>
+								<label>Preço</label>
 								<%= memoria.getPreco() %>
+								</p>
+								<p>
 								<label>Quantidade</label>
 								<%= item.getQuantidade() %>
+								</p>
 							</div>
-						</div><br>
+						</div>
 						<%
 									}
 									else if (peca instanceof DiscoRigido) {
@@ -118,20 +152,30 @@
 						<div class="row">
 							<div class="produto col-md-8">
 								<h4>Disco Rígido</h4>
-								<label>Tipo</label><br>
+								<p>
+								<label>Tipo</label>
 								<%= discoRigido.getTipo() %>
-								<label>Fabricante</label><br>
+								</p>
+								<p>
+								<label>Fabricante</label>
 								<%= discoRigido.getFabricante() %>
-								<label>Tamanho</label><br>
+								</p>
+								<p>
+								<label>Tamanho</label>
 								<%= discoRigido.getTamanho() %>
+								</p>
 							</div>
 							<div class="quantos col-md-2">
-								<label>Preço</label><br>
+								<p>
+								<label>Preço</label>
 								<%= discoRigido.getPreco() %>
+								</p>
+								<p>
 								<label>Quantidade</label>
 								<%= item.getQuantidade() %>
+								</p>
 							</div>
-						</div><br>
+						</div>
 						<%
 									}
 								}
@@ -141,9 +185,9 @@
 						 <div class="row">
 							<div class="produto col-md-8">
 								<h4>Computador</h4>
-								<label>Placa Mãe</label><br>
+								<label>Placa Mãe</label>
 								<%= computador.getPm().getFabricante() %>
-								<label>Memória</label><br>
+								<label>Memória</label>
 								<% if(computador.getMem1() != null) { %>
 								<%= computador.getMem1().getFabricante() %>
 								<% } if(computador.getMem2() != null) { %>
@@ -153,22 +197,22 @@
 								<% } if(computador.getMem3() != null) { %>
 								<%= computador.getMem3().getFabricante() %>
 								<% } %>
-								<label>Disco Rígido</label><br>
+								<label>Disco Rígido</label>
 								<% if(computador.getHd1() != null) { %>
 								<%= computador.getHd1().getFabricante() %>
 								<% } if(computador.getHd2() != null) { %>
 								<%= computador.getHd2().getFabricante() %>
 								<% } %>
-								<label>Processador</label><br>
+								<label>Processador</label>
 								<%= computador.getProc().getFabricante() %>
 							</div>
 							<div class="quantos col-md-2">
-								<label>Preço</label><br>
+								<label>Preço</label>
 								<%= computador.calculaPreco() %>
 								<label>Quantidade</label>
 								<%= item.getQuantidade() %>
 							</div>
-						</div><br>
+						</div>
 						<% 
 									}
 								}
@@ -188,10 +232,14 @@
 						<div class="col-md-4"></div>
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
+						<p>
 						<label>Desconto aplicado:</label>
 						<%= 100 * pedido.getDesconto() %>%
+						</p>
+						<p>
 						<label>Valor Total do Pedido:</label>
 						R$ <%= pedido.getPrecoTotalDoPedido() %>
+						</p>
 						</div>
 					</div>
 					<% } %>

@@ -9,34 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import basic.dao.ProcessadorDAO;
-import basic.model.*;
-
-import java.util.ArrayList;
+import basic.dao.*;
+import basic.model.Cliente;
+import basic.model.Pedido;
+import basic.model.Usuario;
 
 /**
  * Servlet implementation class ProcessadorController
  */
-@WebServlet("/RemoverProcessadorController")
-public class RemoverProcessadorController extends HttpServlet {
+@WebServlet({"/home"})
+public class Inicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Processador> listaDeProcessador = new ArrayList<Processador>();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoverProcessadorController() {
+    public Inicio() {
         super();
-
-  
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/BuscarProcessador.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/inicio.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -44,16 +40,7 @@ public class RemoverProcessadorController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Processador processador = (Processador) request.getSession().getAttribute("processadorProcurado");
-		int id = processador.getId();
-		ProcessadorDAO.getInstance().ApagarProcessador(id);
-		
-	
-		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/inicio.jsp");
-        requestDispatcher.forward(request, response);
+		doGet(request, response);
 	}
-
 
 }

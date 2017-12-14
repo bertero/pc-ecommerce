@@ -113,4 +113,28 @@ public class ProcessadorDAO extends DAO {
         return ListaProcessadores;
     }
     
+    public void updateProcessador(Processador proc) {
+        try {
+            Connection connection = getConexao();
+
+            String query = "UPDATE processador SET fabricante=?, modelo=?, preco=?, idSoquete=?, frequencia=? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, proc.getFabricante());
+            preparedStatement.setString(2, proc.getModelo());
+            preparedStatement.setDouble(3, proc.getPreco());
+            preparedStatement.setInt(4, proc.getSoquete().getId());
+            preparedStatement.setString(5, proc.getFrequencia());
+            preparedStatement.setInt(6, proc.getId());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            connection.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return;
+    }
+    
 }

@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DAO {
-    private static String USER = "root";
-    private static String PASSWORD = "";
-    private static String HOST = "localhost";
+    private static String USER = "t1g7";
+    private static String PASSWORD = "x$Hk_?rX";
+    private static String HOST = "143.107.102.5";
     private static Integer PORT = 3306;
-    private static String DB = "labSoft2017";
+    private static String DB = "t1g7";
 
     protected DAO() {
         try {

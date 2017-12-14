@@ -46,4 +46,30 @@ public class SoqueteDAO extends DAO {
         return soquete;
     }
 
+    public Soquete getSoqueteByName(String nome) {
+    	Soquete soquete = null;
+        try {
+            Connection connection = getConexao();
+
+            String query = "SELECT * FROM soquete WHERE nome = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, nome);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                soquete = this.createProcessadorFromRow(rs);
+            }
+
+
+
+            connection.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return soquete;
+    }
+    
 }

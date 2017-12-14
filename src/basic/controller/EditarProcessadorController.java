@@ -45,7 +45,7 @@ public class EditarProcessadorController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getSession().getAttribute("processadorProcurado");
+		request.setAttribute("processadorProcurado", (Processador)request.getSession().getAttribute("processadorProcurado"));;
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/AlterarProcessador.jsp");
         requestDispatcher.forward(request, response);
 	}

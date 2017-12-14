@@ -34,7 +34,7 @@ public class ConfirmarPedidoController extends HttpServlet {
 		PedidoDAO.getInstance();
 		PedidoDAO.insertPedido(pedido);
 		request.getSession().setAttribute("usuario", UsuarioDAO.getInstance().getUsuarioById(1));
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/montarPedidoInit.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/inicio.jsp");
         requestDispatcher.forward(request, response);
 	}
 

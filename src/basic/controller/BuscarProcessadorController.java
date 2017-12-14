@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import basic.dao.PedidoDAO;
 import basic.dao.ProcessadorDAO;
 import basic.model.*;
-import basic.model.soquete.Usuario;
 
 import java.util.ArrayList;
 
