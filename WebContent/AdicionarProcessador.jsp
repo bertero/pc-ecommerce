@@ -13,12 +13,12 @@
 	</div>
 	<div class="col-md-8">
 	<h3>Coloque os dados do processador</h3>
-	<form style="border-style:none"" method="post" action="/First_Web/AlterarProcessadorController">
+	<form style="border-style:none" method="post" action="/First_Web/AlterarProcessadorController">
 				<label for="modelo">Modelo: </label>
 				<input name="modelo" type="text"></input><br>
 				<label for="fabricante">Fabricante: </label>
 				<input name="fabricante" type="text"></input><br>
-				<label for="soquete">Soquete: </label>
+				<label for="soquete">Nome Soquete: </label>
 				<input name="soquete" type="text"></input><br>
 				<label for="frequencia">Frequência: </label>
 				<input name="frequencia" type="text"></input><br>

@@ -25,7 +25,7 @@
 </div>
 <br>
 <div class="col-md-8">
-	<form method="post" action="/First_Web/AdicionarProcessadorController">
+	<form method="get" action="/First_Web/AdicionarProcessadorController">
 		<button class="btn btn-primary"  type ="submit">Adicionar Processador</button>
 		
 	</form>
