@@ -50,7 +50,7 @@
 		</div>
 		<div class="col-md-5">
 			<h4>Cadastrar novos dados</h4>
-			<form style="border-style:none"" method="post" action="/First_Web/AlterarProcessadorController">
+			<form style="border-style:none"" method="post" action="/PoC-MVC/AlterarProcessadorController">
 				<label for="modelo">Novo modelo: </label>
 				<input name="modelo" type="text"></input><br>
 				<label for="fabricante">Novo fabricante: </label>

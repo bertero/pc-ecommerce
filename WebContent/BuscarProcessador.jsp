@@ -16,7 +16,7 @@
 </div>
 
 <div class = "col-md-8">
-	<form method="post" action="/First_Web/BuscarProcessadorController" >
+	<form method="post" action="/PoC-MVC/BuscarProcessadorController" >
 		<label for="processador">ID Processador: </label>
 		<input style="width:500px" name = "id" type = "text" placeholder = "Digite aqui o ID do processador desejado"></input>
 		<br>
@@ -25,7 +25,7 @@
 </div>
 <br>
 <div class="col-md-8">
-	<form method="get" action="/First_Web/AdicionarProcessadorController">
+	<form method="get" action="/PoC-MVC/AdicionarProcessadorController">
 		<button class="btn btn-primary"  type ="submit">Adicionar Processador</button>
 		
 	</form>

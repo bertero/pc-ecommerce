@@ -31,7 +31,7 @@
 						<h4>Selecione as peças para adicionar ao pedido</h4>
 					</div>
 					
-					<form role="form" method="post" action="/First_Web/pecas-avulsas">
+					<form role="form" method="post" action="/PoC-MVC/pecas-avulsas">
 						<div class="lista_produtos">
 							<h4>Placa Mãe</h4>
 							<% 

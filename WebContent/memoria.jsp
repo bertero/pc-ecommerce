@@ -27,7 +27,7 @@
 						<h4>Selecione até 4 memórias para adicionar ao pedido</h4>
 					</div>
 					
-					<form role="form" method="post" action="/First_Web/memoria-select">
+					<form role="form" method="post" action="/PoC-MVC/memoria-select">
 						<div class="lista_produtos">
 							<h4>Memória</h4>
 							<% 

@@ -22,17 +22,17 @@
 				<div class="col-md-8" id="main_div">
 					<div class="row" >
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/montar-pedido" >
+							<form role="form" method="get" action="/PoC-MVC/montar-pedido" >
 							<button type="submit" class="btn btn-primary">Montar pedido</button>
 						</form>
 						</div>
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/EditarProcessadorController" >
+							<form role="form" method="get" action="/PoC-MVC/EditarProcessadorController" >
 							<button type="submit" class="btn btn-primary">Pesquisar processador</button>
 						</form>
 						</div>
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/GerarRelatorioController" >
+							<form role="form" method="get" action="/PoC-MVC/GerarRelatorioController" >
 							<button type="submit" class="btn btn-primary">Gerar relatório</button>
 						</form>
 						</div>

@@ -28,7 +28,7 @@
 						<h4>Selecione uma placa mãe para adicionar ao computador</h4>
 					</div>
 					
-					<form role="form" method="post" action="/First_Web/placa-mae-select">
+					<form role="form" method="post" action="/PoC-MVC/placa-mae-select">
 						<div class="lista_produtos">
 							<h4>Placa Mãe</h4>
 							<% 

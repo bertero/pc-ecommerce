@@ -26,7 +26,7 @@
 						<h4>Selecione até 2 discos rígidos para adicionar ao computador</h4>
 					</div>
 					
-					<form role="form" method="post" action="/First_Web/disco-rigido-select">
+					<form role="form" method="post" action="/PoC-MVC/disco-rigido-select">
 						<div class="lista_produtos">
 							<h4>Disco Rígido</h4>
 							<% 

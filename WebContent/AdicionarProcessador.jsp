@@ -13,7 +13,7 @@
 	</div>
 	<div class="col-md-8">
 	<h3>Coloque os dados do processador</h3>
-	<form style="border-style:none" method="post" action="/First_Web/AdicionarProcessadorController">
+	<form style="border-style:none" method="post" action="/PoC-MVC/AdicionarProcessadorController">
 				<label for="modelo">Modelo: </label>
 				<input name="modelo" type="text"></input><br>
 				<label for="fabricante">Fabricante: </label>

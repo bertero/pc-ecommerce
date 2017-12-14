@@ -250,17 +250,17 @@
 					
 					<div class="row" >
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/pecas-avulsas" >
+							<form role="form" method="get" action="/PoC-MVC/pecas-avulsas" >
 							<button type="submit" class="btn btn-primary">Adicionar mais peças</button>
 						</form>
 						</div>
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/placa-mae-select" >
+							<form role="form" method="get" action="/PoC-MVC/placa-mae-select" >
 							<button type="submit" class="btn btn-primary">Adicionar um computador</button>
 						</form>
 						</div>
 						<div class="col-md-4">
-							<form role="form" method="get" action="/First_Web/confirmar-pedido" >
+							<form role="form" method="get" action="/PoC-MVC/confirmar-pedido" >
 							<button type="submit" class="btn btn-primary">Finalizar pedido</button>
 						</form>
 						</div>

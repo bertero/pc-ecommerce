@@ -17,12 +17,12 @@
 			
 			<div class="row">
 				<div class="col-md-6" >
-					<form style="border-style:none"  method="post" action="/First_Web/EditarProcessadorController">
+					<form style="border-style:none"  method="post" action="/PoC-MVC/EditarProcessadorController">
 						<button style="width:100%" type="submit"  type ="submit">Editar Dados da Peça</button>
 					</form> 
 				</div>
 				<div class="col-md-6">
-					<form style="border-style:none" method = "post" action="/First_Web/RemoverProcessadorController">
+					<form style="border-style:none" method = "post" action="/PoC-MVC/RemoverProcessadorController">
 						<button style="width:100%" type="submit"  type ="submit">Remover Processador</button>
 					</form>
 				</div>
